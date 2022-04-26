@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".editCommand.EditCommandActivity"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/edit_FbdlCommandText"
+        android:textSize="24sp"
+        android:layout_marginBottom="24dp"
+        android:textAlignment="center"
+        android:textAppearance="?attr/textAppearanceHeadline4" />
+
+    <EditText
+        android:id="@+id/edit_command_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/please_give_it_a_name" />
+
+    <EditText
+        android:id="@+id/edit_command_fbdl"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="left|top"
+        android:hint="@string/please_write_fbdl_command"
+        android:inputType="textMultiLine"
+        tools:ignore="RtlHardcoded" />
+
+    <CheckBox
+        android:id="@+id/edit_command_current"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_as_default"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/edit_btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="@string/edit_btnDelete" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/edit_btnDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_green_light"
+            android:text="@string/edit_btnDone" />
+
+    </LinearLayout>
+
+</LinearLayout>

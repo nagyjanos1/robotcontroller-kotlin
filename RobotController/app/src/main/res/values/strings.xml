@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">RobotController</string>
+    <string name="title_activity_joystick">joystick</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="date">date</string>
+    <string name="fbdl_command">Fbdl command</string>
+    <string name="delete">Delete</string>
+    <string name="name">Name</string>
+    <string name="current">Current</string>
+    <string name="set_as_default">Set as default</string>
+    <string name="btnEdit">Edit</string>
+    <string name="please_write_fbdl_command">Please, write fbdl command</string>
+    <string name="please_give_it_a_name">Please, give it a name</string>
+    <string name="edit_command_name_text">Name</string>
+    <string name="add_FbdlCommandText">Add FBDL command</string>
+    <string name="done_button_text">Done</string>
+    <string name="edit_btnDone">Done</string>
+    <string name="edit_btnDelete">Delete</string>
+    <string name="edit_FbdlCommandText">Edit fbdl command</string>
+    <string name="add_btnDone">Add</string>
+    <string name="is_default">Default</string>
+    <string name="zero_percent">0%</string>
+    <string name="x050_x050">x050:x050</string>
+    <string name="zero_angle">0°</string>
+    <string name="joystick">Joystick</string>
+    <string name="fbdl">FBDL</string>
+    <string name="bluetoothSettings">Bluetooth settings</string>
+    <string name="bluetooth_is_not_available">Bluetooth is not available</string>
+    <string name="bluetooth_is_available">Bluetooth is available</string>
+    <string name="bluetooth_icon">Bluetooth icon</string>
+    <string name="bluetooth_is_turning_on">Bluetooth is turning on</string>
+    <string name="bluetooth_is_turning_off">Blutooth is turning off</string>
+    <string name="pairedDevices">Paired devices:</string>
+    <string name="refresh_devices">Refresh paired devices list</string>
+    <string name="btDeviceAddress">Bluetooth device\'s address</string>
+    <string name="btDeviceName">Device name</string>
+    <string name="PairedDevices">Paired devices</string>
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1575" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/drawable/ic_baseline_videogame_asset_24.xml" value="0.2285" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/drawable/ic_bluetooth_refresh.xml" value="0.2285" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1575" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/activity_add_command.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/activity_command_card.xml" value="0.33" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/activity_edit_command.xml" value="0.33" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/activity_fbdl_command_list.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/activity_joystick.xml" value="0.33" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/content_joystick.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/device_listitem_layout.xml" value="0.5323834196891192" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/edit_command_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/fragment_first.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/fragment_second.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/layout/standard_dialog_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/menu/main_option_menu.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/menu/nav_menu.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1575" />
+        <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1575" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_baseline_videogame_asset_24.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_fbdl_command_list.xml" value="0.1859375" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_main.xml" value="0.1859375" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/device_listitem_layout.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/menu/fbdllist_option_menu.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/menu/main_option_menu.xml" value="0.3625" />
+      </map>
+    </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="androidx.room.Entity" />
+    </list>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

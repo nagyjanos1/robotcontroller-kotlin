@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".addCommand.AddCommandActivity"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/add_FbdlCommandText"
+        android:textSize="24sp"
+        android:layout_marginBottom="24dp"
+        android:textAlignment="center"
+        android:textAppearance="?attr/textAppearanceHeadline4" />
+
+    <EditText
+        android:id="@+id/add_command_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/please_give_it_a_name" />
+
+    <EditText
+        android:id="@+id/add_command_fbdl"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="left|top"
+        android:hint="@string/please_write_fbdl_command"
+        android:inputType="textMultiLine"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/add_btnDone"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_green_light"
+        android:text="@string/add_btnDone" />
+
+</LinearLayout>
