@@ -42,4 +42,7 @@
     <string name="btDeviceAddress">Bluetooth device\'s address</string>
     <string name="btDeviceName">Device name</string>
     <string name="PairedDevices">Paired devices</string>
+    <string name="rulebase_universe_name">Selected rulebase universe</string>
+    <string name="handle_universe">Handle Universe</string>
+    <string name="handle_rules">Handle Rules</string>
 </resources>

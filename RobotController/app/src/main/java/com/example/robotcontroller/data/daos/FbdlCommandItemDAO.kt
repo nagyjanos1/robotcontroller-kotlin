@@ -1,11 +1,12 @@
-package com.example.robotcontroller.data
+package com.example.robotcontroller.data.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.robotcontroller.data.FbdlCommandItem
 
 @Dao
 interface FbdlCommandItemDAO {
-    @Query("SELECT * FROM fbdlcommanditem")
+    @Query("SELECT * FROM fbdlcommanditems")
     fun findAllItems(): LiveData<List<FbdlCommandItem>>
 
     @Insert
@@ -17,6 +18,6 @@ interface FbdlCommandItemDAO {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateItem(item: FbdlCommandItem)
 
-    @Query("SELECT * FROM fbdlcommanditem WHERE itemId = :currentFbdlCommandId")
-    fun findItemById(currentFbdlCommandId: Long): FbdlCommandItem?
+    @Query("SELECT * FROM fbdlcommanditems WHERE itemId = :itemId")
+    fun findItemById(itemId: Long): FbdlCommandItem?
 }
