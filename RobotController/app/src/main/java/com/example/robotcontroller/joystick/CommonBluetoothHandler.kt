@@ -17,7 +17,7 @@ import java.util.*
 class CommonBluetoothHandler(context: Context?, handler: Handler) {
 
     companion object {
-        val MY_UUID_INSECURE: UUID = UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66")
+        val MY_UUID_INSECURE: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
         const val TAG: String = "BluetoothDataSharingService"
         const val MESSAGE_STATE_CHANGE = 1
         const val MESSAGE_READ = 2
@@ -309,7 +309,8 @@ class CommonBluetoothHandler(context: Context?, handler: Handler) {
 
             // Create a new listening server socket
             try {
-                tmp = mAdapter?.listenUsingInsecureRfcommWithServiceRecord("CommonBluetoothHandler", MY_UUID_INSECURE)
+                //tmp = mAdapter?.listenUsingInsecureRfcommWithServiceRecord("CommonBluetoothHandler", MY_UUID_INSECURE)
+                tmp = mAdapter?.listenUsingRfcommWithServiceRecord("CommonBluetoothHandler", MY_UUID_INSECURE)
             } catch (e: IOException) {
                 Log.e(TAG, "Socket Type: $mSocketType listen() failed", e)
             }
@@ -332,19 +333,7 @@ class CommonBluetoothHandler(context: Context?, handler: Handler) {
 
             // Make a connection to the BluetoothSocket
             try {
-                var cont = 0;
-                while (mmSocket?.isConnected == false && cont < 3)
-                // This is a blocking call and will only return on a
-                // successful connection or an exception
-                {
-                    try {
-                        mmSocket!!.connect()
-                    }
-                    catch (e: IOException) {
-                        Log.e(TAG, "unable to close() $mSocketType socket during connection failure", e)
-                    }
-                    cont++
-                }
+                mmSocket!!.connect()
             } catch (e: IOException) {
                 // Close the socket
                 try {
