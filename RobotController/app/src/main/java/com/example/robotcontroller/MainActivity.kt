@@ -22,7 +22,7 @@ import com.example.robotcontroller.bluetooth.BluetoothBroadcastReceiver
 import com.example.robotcontroller.joystick.JoystickActivity
 import com.example.robotcontroller.listCommand.FbdlCommandListActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
 
     companion object {
         val EXTRA_ADDRESS: String = "Device_address"

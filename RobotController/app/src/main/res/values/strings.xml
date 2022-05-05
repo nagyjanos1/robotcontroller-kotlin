@@ -42,4 +42,5 @@
     <string name="btDeviceAddress">Bluetooth device\'s address</string>
     <string name="btDeviceName">Device name</string>
     <string name="PairedDevices">Paired devices</string>
+    <string name="zero">0</string>
 </resources>

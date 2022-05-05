@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -21,7 +22,7 @@ import com.example.robotcontroller.joystick.JoystickActivity
 import com.example.robotcontroller.viewmodels.FbdlCommandItemViewModel
 import com.example.robotcontroller.viewmodels.FbdlCommandItemViewModelFactory
 
-class FbdlCommandListActivity : AppCompatActivity() {
+class FbdlCommandListActivity() : AppCompatActivity() {
     private val newFbdlCommandActivityRequestCode = 1
     private lateinit var commandsAdapter: CommandsAdapter
     private lateinit var currentDeviceAddress: String
