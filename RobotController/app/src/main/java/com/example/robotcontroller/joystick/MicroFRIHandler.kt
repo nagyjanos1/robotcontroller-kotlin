@@ -6,16 +6,15 @@ import com.example.robotcontroller.data.entities.Universe
 import java.lang.Error
 import java.lang.StringBuilder
 
-class MicroFRIHandler(private val bSocketService: BluetoothDataSharingService) {
+class MicroFRIHandler {
 
-    fun sendUniverseInitFrame(universeCnt: Int, ruleCnt: Int): Boolean {
+    fun createInitFrame(universeCnt: Int, ruleCnt: Int): ByteArray {
         val frame = "FI$universeCnt:$ruleCnt"
-        val replacedControlSigns = replacer(frame.toString())
 
-        return bSocketService.sendMessageToText(replacedControlSigns.toByteArray())
+        return replacer(frame)
     }
 
-    fun sendUniverses(universes: Array<Universe>, limits: ArrayList<Limit>): Boolean {
+    fun createUniverses(universes: ArrayList<Universe>, limits: ArrayList<Limit>): ByteArray {
         if (universes.isEmpty()) {
             throw Error("Universe array is empty.")
         }
@@ -40,12 +39,10 @@ class MicroFRIHandler(private val bSocketService: BluetoothDataSharingService) {
             }
         }
 
-        val replacedControlSigns = replacer(frame.toString())
-
-        return bSocketService.sendMessageToText(replacedControlSigns.toString().toByteArray())
+        return replacer(frame.toString())
     }
 
-    fun sendRule(rules: Array<Rule>): Boolean {
+    fun createRule(rules: ArrayList<Rule>): ByteArray {
         if (rules.isEmpty()) {
             throw Error("Rules array is empty.")
         }
@@ -61,27 +58,27 @@ class MicroFRIHandler(private val bSocketService: BluetoothDataSharingService) {
             sb.append("1:1:${rule.ruleUniverseId}|${rule.baseLimitId}:${rule.ruleLimitId}")
         }
 
-        val replacedControlSigns = replacer(sb.toString())
-
-        return bSocketService.sendMessageToText(replacedControlSigns.toByteArray())
+        return replacer(sb.toString())
     }
 
-    fun replacer(message: String): String {
-        val sb = StringBuilder();
+    fun replacer(message: String): ByteArray {
+        val sb = ArrayList<Byte>();
 
         for (ch in message.toCharArray()) {
             when (ch) {
-                'F' -> sb.append("255");
-                'I' -> sb.append('1')
-                'U' -> sb.append('2')
-                'R' -> sb.append('3')
-                'E' -> sb.append('4')
+                'F' -> {
+                    sb.add(255.toByte())
+                };
+                'I' -> sb.add(1)
+                'U' -> sb.add(2)
+                'R' -> sb.add(3)
+                'E' -> sb.add(4)
                 '|', ':' -> {}
                 else ->
-                    sb.append(ch)
+                    sb.add((ch.code.toByte()-48).toByte())
             }
         }
 
-        return sb.toString()
+        return sb.toByteArray()
     }
 }

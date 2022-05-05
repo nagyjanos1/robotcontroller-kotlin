@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.robotcontroller.MainActivity
 import com.example.robotcontroller.R
+import com.example.robotcontroller.data.entities.Limit
+import com.example.robotcontroller.data.entities.Universe
 import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MESSAGE_DEVICE_NAME
 import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MESSAGE_READ
 import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MESSAGE_STATE_CHANGE
@@ -19,6 +21,7 @@ import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MES
 import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MESSAGE_WRITE
 import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.TOAST
 import java.util.*
+import kotlin.collections.ArrayList
 
 class JoystickActivity: AppCompatActivity() {
     private lateinit var mUUID: UUID
@@ -46,11 +49,40 @@ class JoystickActivity: AppCompatActivity() {
         // Get local Bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
+        val mFriHandler = MicroFRIHandler()
         // Initialize the buffer for outgoing messages
         mOutStringBuffer = StringBuffer()
 
         findViewById<Button>(R.id.send_a_message).setOnClickListener {
-            sendMessage("hello")
+
+            val universe1 = Universe(1, "angle", 1)
+            val limit11 = Limit(1, "neg_high", -20, -1, 1)
+            val limit12 = Limit(2, "zero", 0, 0, 1)
+            val limit13 = Limit(3, "pos_high", 1, 20, 1)
+
+            val universe2 = Universe(2, "direction", 1)
+            val limit21 = Limit(1, "high_forwad", -10, -1, 2)
+            val limit22 = Limit(2, "zero", 0, 0, 2)
+            val limit23 = Limit(3, "high_backward", 1, 10, 2)
+
+            val universes = ArrayList<Universe>()
+            universes.add(universe1)
+            universes.add(universe2)
+
+            val limits = ArrayList<Limit>()
+            limits.add(limit11)
+            limits.add(limit12)
+            limits.add(limit13)
+
+            limits.add(limit21)
+            limits.add(limit22)
+            limits.add(limit23)
+
+            val initFrame = mFriHandler.createInitFrame(2, 2)
+            sendFrame(initFrame)
+
+            /*val universeFrame = mFriHandler.createUniverses(universes, limits)
+            sendFrame(universeFrame)*/
         }
 
         findViewById<Button>(R.id.receive_a_message).setOnClickListener {
@@ -121,6 +153,23 @@ class JoystickActivity: AppCompatActivity() {
             // Get the message bytes and tell the BluetoothChatService to write
             val send = message.toByteArray()
             mBluetoothHandler?.write(send)
+
+            // Reset out string buffer to zero and clear the edit text field
+            mOutStringBuffer!!.setLength(0)
+            findViewById<TextView>(R.id.mOutEditText).text = mOutStringBuffer
+        }
+    }
+
+    private fun sendFrame(msg: ByteArray) {
+        if (mBluetoothHandler?.getState() !== CommonBluetoothHandler.STATE_CONNECTED) {
+            Toast.makeText(this, "NOT CONNECTED", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Check that there's actually something to send
+        if (msg.isNotEmpty()) {
+            // Get the message bytes and tell the BluetoothChatService to write
+            mBluetoothHandler?.write(msg)
 
             // Reset out string buffer to zero and clear the edit text field
             mOutStringBuffer!!.setLength(0)
