@@ -20,7 +20,7 @@ import com.example.robotcontroller.data.FbdlCommandItem
 import com.example.robotcontroller.editCommand.EditCommandActivity
 import com.example.robotcontroller.joystick.JoystickActivity
 import com.example.robotcontroller.viewmodels.FbdlCommandItemViewModel
-import com.example.robotcontroller.viewmodels.FbdlCommandItemViewModelFactory
+import com.example.robotcontroller.viewmodels.GenericViewModelFactory
 
 class FbdlCommandListActivity() : AppCompatActivity() {
     private val newFbdlCommandActivityRequestCode = 1
@@ -28,7 +28,7 @@ class FbdlCommandListActivity() : AppCompatActivity() {
     private lateinit var currentDeviceAddress: String
 
     private val fbdlListViewModel by viewModels<FbdlCommandItemViewModel> {
-        FbdlCommandItemViewModelFactory(this@FbdlCommandListActivity)
+        GenericViewModelFactory(this@FbdlCommandListActivity)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
