@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -16,7 +15,7 @@ import com.example.robotcontroller.MainActivity
 import com.example.robotcontroller.R
 import com.example.robotcontroller.adapter.CommandsAdapter
 import com.example.robotcontroller.addCommand.AddCommandActivity
-import com.example.robotcontroller.data.FbdlCommandItem
+import com.example.robotcontroller.data.entities.FbdlCommandItem
 import com.example.robotcontroller.editCommand.EditCommandActivity
 import com.example.robotcontroller.joystick.JoystickActivity
 import com.example.robotcontroller.viewmodels.FbdlCommandItemViewModel

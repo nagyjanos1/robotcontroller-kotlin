@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.robotcontroller.adapter.CommandsAdapter.*
-import com.example.robotcontroller.data.FbdlCommandItem
+import com.example.robotcontroller.data.entities.FbdlCommandItem
 import androidx.recyclerview.widget.ListAdapter
 import com.example.robotcontroller.R
 import com.example.robotcontroller.R.layout.activity_command_card

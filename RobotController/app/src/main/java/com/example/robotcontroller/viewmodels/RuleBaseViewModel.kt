@@ -3,7 +3,7 @@ package com.example.robotcontroller.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.robotcontroller.data.AppDatabase
-import com.example.robotcontroller.data.RuleBase
+import com.example.robotcontroller.data.entities.RuleBase
 
 class RuleBaseViewModel(val dataSource: AppDatabase) : ViewModel() {
     fun getById(id: Long): RuleBase? {

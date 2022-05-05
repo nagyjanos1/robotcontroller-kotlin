@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.robotcontroller.data.Universe
+import com.example.robotcontroller.data.entities.Universe
 import com.example.robotcontroller.databinding.FragmentUniverseBinding
 
 import com.example.robotcontroller.fragments.universe.placeholder.PlaceholderContent.PlaceholderItem

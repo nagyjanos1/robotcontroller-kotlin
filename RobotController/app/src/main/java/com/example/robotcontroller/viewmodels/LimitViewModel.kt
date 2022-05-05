@@ -3,7 +3,7 @@ package com.example.robotcontroller.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.robotcontroller.data.AppDatabase
-import com.example.robotcontroller.data.Limit
+import com.example.robotcontroller.data.entities.Limit
 
 class LimitViewModel(val dataSource: AppDatabase) : ViewModel() {
     fun getById(id: Long): Limit? {

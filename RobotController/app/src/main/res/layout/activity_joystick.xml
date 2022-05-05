@@ -42,8 +42,23 @@
         android:height="20dp"
         android:text="@string/x050_x050" />
 
-    <com.example.robotcontroller.joystick.JoystickView
+    <TextView
+        android:id="@+id/mOutEditText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:height="20dp"
+        android:text="@string/x050_x050" />
+
+    <Button
+        android:id="@+id/send_a_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send" />
+
+    <Button
+        android:id="@+id/receive_a_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/receive" />
 
 </LinearLayout>

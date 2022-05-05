@@ -3,16 +3,12 @@ package com.example.robotcontroller.editCommand
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.Transformations
 import com.example.robotcontroller.R
-import com.example.robotcontroller.adapter.BluetoothDeviceDataHolder
 import com.example.robotcontroller.data.AppDatabase
-import com.example.robotcontroller.data.FbdlCommandItem
-import com.example.robotcontroller.data.Universe
+import com.example.robotcontroller.data.entities.FbdlCommandItem
+import com.example.robotcontroller.data.entities.Universe
 import com.example.robotcontroller.fragments.universe.UniverseFragment
 
 class EditCommandActivity : AppCompatActivity() {
@@ -46,9 +42,9 @@ class EditCommandActivity : AppCompatActivity() {
         description */
         currentFbdlCommandId?.let {
             btnHandleUniverse.setOnClickListener {
-                val intent = Intent(this, UniverseFragment()::class.java)
+                /*val intent = Intent(this, UniverseFragment()::class.java)
                 intent.putExtra("itemId", currentFbdlCommandId)
-                startActivityFromFragment( intent)
+                startActivityFromFragment( intent)*/
             }
 
             val database: AppDatabase = AppDatabase.getInstance(this)

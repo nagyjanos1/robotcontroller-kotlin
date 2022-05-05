@@ -1,4 +1,4 @@
-package com.example.robotcontroller.data
+package com.example.robotcontroller.data.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

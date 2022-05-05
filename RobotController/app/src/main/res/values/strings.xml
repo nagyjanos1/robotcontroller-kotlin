@@ -46,4 +46,6 @@
     <string name="handle_universe">Handle Universe</string>
     <string name="handle_rules">Handle Rules</string>
     <string name="zero">0</string>
+    <string name="send">Send</string>
+    <string name="receive">Receive</string>
 </resources>

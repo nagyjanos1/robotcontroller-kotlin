@@ -5,17 +5,10 @@ import android.bluetooth.BluetoothSocket
 import java.io.IOException
 import java.io.OutputStream
 
-class MicroFRIHandler(private val bSocketService: BluetoothDataSharingService) {
-    sendUniverseInitFrame() {
-
-    }
-
-    sendUniverse() {
-
-    }
-}
-
 class BluetoothDataSharingService(private val bSocket: BluetoothSocket) {
+
+    var messages: ArrayList<String> = ArrayList()
+
     @SuppressLint("MissingPermission")
     fun connect(): Boolean {
         var counter = 0
@@ -24,7 +17,6 @@ class BluetoothDataSharingService(private val bSocket: BluetoothSocket) {
                 counter++
 
                 bSocket.connect()
-                //Toast.makeText(this, "Bluetooth socket is connected.", Toast.LENGTH_SHORT).show()
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -33,21 +25,40 @@ class BluetoothDataSharingService(private val bSocket: BluetoothSocket) {
         return bSocket.isConnected
     }
 
-    fun sendMessageToText(message: ByteArray) {
-        try {
+    fun sendMessageToText(message: ByteArray): Boolean {
+        return try {
             val oStream: OutputStream? = bSocket.outputStream
             oStream?.write(message ,0, message.size)
+            true
         } catch (e: IOException) {
             e.printStackTrace()
+            false
         }
     }
 
-    fun sendJoystickCommand(message: ByteArray) {
-        try {
+    fun readBlueToothData() {
+        val buffer = ByteArray(1024)
+        var bytes: Int
+        while (true) {
+            try {
+                bytes = bSocket.inputStream.read(buffer)
+                val readMessage = String(buffer, 0, bytes)
+                messages.add(readMessage)
+            } catch (e: IOException) {
+                e.printStackTrace()
+                break
+            }
+        }
+    }
+
+    fun sendJoystickCommand(message: ByteArray): Boolean {
+        return try {
             val oStream: OutputStream? = bSocket.outputStream
             oStream?.write(message ,0, message.size)
+            true
         } catch (e: IOException) {
             e.printStackTrace()
+            false
         }
     }
 
@@ -61,3 +72,4 @@ class BluetoothDataSharingService(private val bSocket: BluetoothSocket) {
         }
     }
 }
+

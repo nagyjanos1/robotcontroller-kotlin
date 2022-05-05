@@ -2,7 +2,7 @@ package com.example.robotcontroller.data.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.robotcontroller.data.Limit
+import com.example.robotcontroller.data.entities.Limit
 
 @Dao
 interface LimitsDAO {

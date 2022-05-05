@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.robotcontroller.data.Rule
+import com.example.robotcontroller.data.entities.Rule
 import com.example.robotcontroller.databinding.FragmentItemBinding
 
 import com.example.robotcontroller.fragments.rules.placeholder.PlaceholderContent.PlaceholderItem

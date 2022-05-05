@@ -2,7 +2,7 @@ package com.example.robotcontroller.data.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.robotcontroller.data.RuleBase
+import com.example.robotcontroller.data.entities.RuleBase
 
 @Dao
 interface RuleBaseDAO {

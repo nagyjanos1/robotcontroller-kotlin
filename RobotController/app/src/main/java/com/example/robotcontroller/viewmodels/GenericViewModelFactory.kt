@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.robotcontroller.data.AppDatabase
-import com.example.robotcontroller.data.Limit
-import com.example.robotcontroller.data.Universe
 
 class GenericViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
