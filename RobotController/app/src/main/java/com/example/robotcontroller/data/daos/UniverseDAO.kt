@@ -21,7 +21,7 @@ interface UniverseDAO {
     @Query("SELECT * FROM universe WHERE id = :universeId")
     fun findItemById(universeId: Long): Universe?
 
-    @Query("SELECT * FROM universe WHERE id = :fbdlId")
+    @Query("SELECT * FROM universe WHERE fbdlCommandItemId = :fbdlId")
     fun findAllByFbdlId(fbdlId: Long): List<Universe>
 }
 

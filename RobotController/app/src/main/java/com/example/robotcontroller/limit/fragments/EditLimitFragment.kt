@@ -19,7 +19,11 @@ import com.example.robotcontroller.viewmodels.UniverseViewModel
 class UniverseSpinnerHolder(
     val id: Long?,
     val name: String
-)
+) {
+    override fun toString(): String {
+        return name
+    }
+}
 
 class EditLimitFragment : DialogFragment() {
     companion object {
@@ -73,8 +77,8 @@ class EditLimitFragment : DialogFragment() {
                 UniverseSpinnerHolder(it.id, it.name)
             }.toMutableList()
 
-            universeSpinner.adapter = ArrayAdapter(this.requireContext(), R.layout.limit_item_layout, spinnerHolders)
-            universeSpinner.setPromptId(it1.getLong(UNIVERSE_ID).toInt())
+            universeSpinner.adapter = ArrayAdapter(this.requireContext(), R.layout.universe_spinner_item, R.id.universeSpinnerItemName, spinnerHolders)
+            //universeSpinner.setPromptId(it1.getLong(UNIVERSE_ID).toInt())
         }
 
         view.findViewById<Button>(R.id.btn_done_edit_limit_fragment).setOnClickListener {
@@ -94,25 +98,4 @@ class EditLimitFragment : DialogFragment() {
 
         return view
     }
-
-
-   /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        minValueEditText.requestFocus();
-
-        arguments?.let { it1 ->
-            minValueEditText.setText(it1.getInt(MINVALUE))
-            maxValueEditText.setText(it1.getInt(MAXVALUE))
-
-            val universes = universeViewModel.getAllByFbdlId(it1.getLong(FBDL_ID))
-            val spinnerHolders = universes.map {
-                UniverseSpinnerHolder(it.id, it.name)
-            }.toMutableList()
-
-            universeSpinner.adapter = ArrayAdapter(this.requireContext(), R.layout.limit_item_layout, spinnerHolders)
-            universeSpinner.setPromptId(it1.getLong(UNIVERSE_ID).toInt())
-        }
-
-    }*/
 }

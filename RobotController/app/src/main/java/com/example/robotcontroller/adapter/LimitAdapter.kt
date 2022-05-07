@@ -51,8 +51,8 @@ class LimitAdapter(private val onClick: (Limit) -> Unit):
     class LimitViewHolder(itemView: View, val onClick: (Limit) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
 
-        private val minValueTextView: TextView = itemView.findViewById(R.id.editLimitMinValue)
-        private val maxValueTextView: TextView = itemView.findViewById(R.id.editLimitMaxValue)
+        private val minValueTextView: TextView = itemView.findViewById(R.id.limitMinValueListItem)
+        private val maxValueTextView: TextView = itemView.findViewById(R.id.limitMaxValueListItem)
         private var currentLimit: Limit? = null
 
         init {
