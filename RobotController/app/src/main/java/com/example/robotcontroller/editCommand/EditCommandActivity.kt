@@ -9,9 +9,11 @@ import com.example.robotcontroller.R
 import com.example.robotcontroller.data.AppDatabase
 import com.example.robotcontroller.data.entities.FbdlCommandItem
 import com.example.robotcontroller.data.entities.Universe
-import com.example.robotcontroller.fragments.universe.UniverseFragment
+import com.example.robotcontroller.universe.UniverseListActivity
 
 class EditCommandActivity : AppCompatActivity() {
+
+    private val editUniverseActivityRequestCode = 1
 
     private lateinit var commandName: EditText
     private lateinit var universeSpinner: Spinner
@@ -42,9 +44,9 @@ class EditCommandActivity : AppCompatActivity() {
         description */
         currentFbdlCommandId?.let {
             btnHandleUniverse.setOnClickListener {
-                /*val intent = Intent(this, UniverseFragment()::class.java)
+                val intent = Intent(this, UniverseListActivity()::class.java)
                 intent.putExtra("itemId", currentFbdlCommandId)
-                startActivityFromFragment( intent)*/
+                startActivityForResult( intent, editUniverseActivityRequestCode)
             }
 
             val database: AppDatabase = AppDatabase.getInstance(this)

@@ -8,8 +8,8 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
-import androidx.compose.ui.graphics.RadialGradientShader
 import com.example.robotcontroller.R
+import com.example.robotcontroller.bluetooth.MicroFRIHandler
 import kotlin.math.atan2
 import kotlin.math.min
 import kotlin.math.sqrt

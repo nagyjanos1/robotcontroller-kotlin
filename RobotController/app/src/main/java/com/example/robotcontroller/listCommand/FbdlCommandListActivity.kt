@@ -21,7 +21,7 @@ import com.example.robotcontroller.joystick.JoystickActivity
 import com.example.robotcontroller.viewmodels.FbdlCommandItemViewModel
 import com.example.robotcontroller.viewmodels.GenericViewModelFactory
 
-class FbdlCommandListActivity() : AppCompatActivity() {
+class FbdlCommandListActivity : AppCompatActivity() {
     private val newFbdlCommandActivityRequestCode = 1
     private lateinit var commandsAdapter: CommandsAdapter
     private lateinit var currentDeviceAddress: String

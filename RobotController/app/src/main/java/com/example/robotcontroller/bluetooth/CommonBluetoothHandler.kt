@@ -1,4 +1,4 @@
-package com.example.robotcontroller.joystick
+package com.example.robotcontroller.bluetooth
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
@@ -14,7 +14,7 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.util.*
 
-class CommonBluetoothHandler(context: Context?, handler: Handler) {
+class CommonBluetoothHandler(handler: Handler) {
 
     companion object {
         val MY_UUID_INSECURE: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")

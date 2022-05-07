@@ -12,14 +12,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.robotcontroller.MainActivity
 import com.example.robotcontroller.R
+import com.example.robotcontroller.bluetooth.CommonBluetoothHandler
 import com.example.robotcontroller.data.entities.Limit
 import com.example.robotcontroller.data.entities.Universe
-import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MESSAGE_DEVICE_NAME
-import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MESSAGE_READ
-import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MESSAGE_STATE_CHANGE
-import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MESSAGE_TOAST
-import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.MESSAGE_WRITE
-import com.example.robotcontroller.joystick.CommonBluetoothHandler.Companion.TOAST
+import com.example.robotcontroller.bluetooth.CommonBluetoothHandler.Companion.MESSAGE_DEVICE_NAME
+import com.example.robotcontroller.bluetooth.CommonBluetoothHandler.Companion.MESSAGE_READ
+import com.example.robotcontroller.bluetooth.CommonBluetoothHandler.Companion.MESSAGE_STATE_CHANGE
+import com.example.robotcontroller.bluetooth.CommonBluetoothHandler.Companion.MESSAGE_TOAST
+import com.example.robotcontroller.bluetooth.CommonBluetoothHandler.Companion.MESSAGE_WRITE
+import com.example.robotcontroller.bluetooth.CommonBluetoothHandler.Companion.TOAST
+import com.example.robotcontroller.bluetooth.MicroFRIHandler
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -103,7 +105,7 @@ class JoystickActivity: AppCompatActivity() {
         if (mBluetoothHandler == null) {
             //initBluetooth()
 
-            mBluetoothHandler = CommonBluetoothHandler(this, mHandler)
+            mBluetoothHandler = CommonBluetoothHandler(mHandler)
             connectDevice(this.intent)
         }
     }

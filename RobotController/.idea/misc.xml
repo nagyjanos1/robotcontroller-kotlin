@@ -26,16 +26,25 @@
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_baseline_videogame_asset_24.xml" value="0.194" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_command_card.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_edit_command.xml" value="0.3625" />
-        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_edit_command.xml" value="0.3625" />
-        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_fbdl_command_list.xml" value="0.1859375" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_edit_universe.xml" value="0.1859375" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_fbdl_command_list.xml" value="0.1" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_joystick.xml" value="0.3625" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_main.xml" value="0.1859375" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_universe_list.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/content_edit_universe.xml" value="0.33" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/device_listitem_layout.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/fragment_edit_universe.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/fragment_item.xml" value="0.3625" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/fragment_item_list.xml" value="0.3484375" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/fragment_second.xml" value="0.33" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/fragment_universe.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/fragment_universe_layout.xml" value="0.39166666666666666" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/fragment_universe_list.xml" value="0.17603850050658562" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/universe_item_layout.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/universe_listitem_layout.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/menu/fbdllist_option_menu.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/menu/general_crud_option.xml" value="0.3625" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/menu/main_option_menu.xml" value="0.3625" />
       </map>
     </option>

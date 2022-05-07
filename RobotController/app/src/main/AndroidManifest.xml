@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RobotController">
         <activity
+            android:name=".universe.UniverseListActivity"
+            android:exported="false" />
+        <activity
             android:name=".listCommand.FbdlCommandListActivity"
             android:exported="false" />
         <activity

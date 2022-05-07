@@ -16,5 +16,5 @@ import java.io.Serializable
 data class Universe (
     @PrimaryKey(autoGenerate = true) var id: Long?,
     @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "fbdlCommandItemId") var fbdlCommandItemId : Long
+    @ColumnInfo(name = "fbdlCommandItemId") var fbdlCommandItemId : Long?
 ) : Serializable

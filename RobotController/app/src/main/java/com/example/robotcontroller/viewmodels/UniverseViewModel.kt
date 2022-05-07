@@ -14,9 +14,13 @@ class UniverseViewModel(val dataSource: AppDatabase) : ViewModel() {
         return dataSource.universeDao().findAllItems()
     }
 
-    fun insert(name: String, fbdlId: Long) {
+    fun insert(name: String, fbdlId: Long?) {
         val universe = Universe(null, name, fbdlId)
         dataSource.universeDao().insertItem(universe)
+    }
+
+    fun update(universe: Universe) {
+        dataSource.universeDao().updateItem(universe)
     }
 
     fun remove(universe: Universe) {

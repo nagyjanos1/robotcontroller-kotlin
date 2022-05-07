@@ -1,4 +1,4 @@
-package com.example.robotcontroller.joystick
+package com.example.robotcontroller.bluetooth
 
 import com.example.robotcontroller.data.entities.Limit
 import com.example.robotcontroller.data.entities.Rule
