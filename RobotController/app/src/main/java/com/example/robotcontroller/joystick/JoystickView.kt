@@ -16,6 +16,7 @@ import kotlin.math.sqrt
 
 class JoystickView : View, Runnable {
 
+
     private var mButtonStickToBorder: Boolean
     private var borderColor: Int
     private var buttonColor: Int
@@ -66,12 +67,12 @@ class JoystickView : View, Runnable {
     private val mLoopInterval: Long = DEFAULT_LOOP_INTERVAL.toLong()
     private var mThread = Thread(this)
 
-    private var mBluetoothService: BluetoothDataSharingService? = null
+    private var mmFriHandler: MicroFRIHandler
 
-    constructor(context: Context?, attrs: AttributeSet? = null, bluetoothService: BluetoothDataSharingService? = null) : super(context, attrs) {
+    constructor(context: Context?, attrs: AttributeSet? = null, mFriHandler: MicroFRIHandler) : super(context, attrs) {
         initPosition()
 
-        mBluetoothService = bluetoothService;
+        mmFriHandler = mFriHandler
 
         val styledAttributes = context!!.theme.obtainStyledAttributes(
             attrs,
@@ -255,7 +256,7 @@ class JoystickView : View, Runnable {
                     mHandlerMultipleLongPress.removeCallbacks(mRunnableMultipleLongPress!!)
                 }
 
-                sendAMessage();
+                mmFriHandler.sendMoveFrame(getAngle(), getStrength());
             }
             MotionEvent.ACTION_POINTER_UP -> {
 
@@ -286,20 +287,6 @@ class JoystickView : View, Runnable {
 
         return true;
         //return super.onTouchEvent(event)
-    }
-
-    private fun sendAMessage() {
-        var angle = getAngle()
-        var strength = getStrength()
-        var direction = 0
-        direction = if (angle in 1..179) {
-            0
-        } else {
-            1
-        }
-
-        val message = "$direction|$angle|$strength"
-        mBluetoothService?.sendJoystickCommand(message.toByteArray())
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -346,6 +333,8 @@ class JoystickView : View, Runnable {
             }
         }
     }
+
+
 
     private fun initPosition() {
         // get the center of view to position circle

@@ -41,6 +41,8 @@ class JoystickActivity: AppCompatActivity() {
      */
     private var mBluetoothHandler: CommonBluetoothHandler? = null
 
+    private lateinit var mFriHandler: MicroFRIHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_joystick)
@@ -49,7 +51,7 @@ class JoystickActivity: AppCompatActivity() {
         // Get local Bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
-        val mFriHandler = MicroFRIHandler()
+        mFriHandler = MicroFRIHandler()
         // Initialize the buffer for outgoing messages
         mOutStringBuffer = StringBuffer()
 
@@ -81,8 +83,8 @@ class JoystickActivity: AppCompatActivity() {
             val initFrame = mFriHandler.createInitFrame(2, 2)
             sendFrame(initFrame)
 
-            /*val universeFrame = mFriHandler.createUniverses(universes, limits)
-            sendFrame(universeFrame)*/
+            val universeFrame = mFriHandler.createUniverses(universes, limits)
+            sendFrame(universeFrame)
         }
 
         findViewById<Button>(R.id.receive_a_message).setOnClickListener {
@@ -198,7 +200,8 @@ class JoystickActivity: AppCompatActivity() {
                 MESSAGE_READ -> {
                     val readBuf = msg.obj as ByteArray
                     // construct a string from the valid bytes in the buffer
-                    val readMessage = String(readBuf, 0, msg.arg1)
+                    //val readMessage = String(readBuf, 0, msg.arg1)
+                    val readMessage = mFriHandler.getResponse(readBuf)
                     Toast.makeText(this@JoystickActivity,
                         readMessage,
                         Toast.LENGTH_SHORT)

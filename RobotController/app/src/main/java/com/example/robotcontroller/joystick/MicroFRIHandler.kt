@@ -8,6 +8,10 @@ import java.lang.StringBuilder
 
 class MicroFRIHandler {
 
+    private val frameByte: Byte = 255.toByte()
+    private val okByte: Byte = 10
+    private val errByte: Byte = 20
+
     fun createInitFrame(universeCnt: Int, ruleCnt: Int): ByteArray {
         val frame = "FI$universeCnt:$ruleCnt"
 
@@ -61,7 +65,31 @@ class MicroFRIHandler {
         return replacer(sb.toString())
     }
 
-    fun replacer(message: String): ByteArray {
+    fun sendMoveFrame(angle: Int, strength: Int) {
+
+    }
+
+    fun getResponse(msg: ByteArray): String {
+        if (msg.isEmpty() || msg.size < 2) {
+            return "Invalid message"
+        }
+
+        if (msg[0] != (-1).toByte()) {
+            return "Invalid first byte"
+        }
+
+        if (msg[1] == okByte) {
+            return "OK"
+        }
+
+        if (msg[1] == errByte) {
+            return "ERROR"
+        }
+
+        return String(msg, 1, msg.size)
+    }
+
+    private fun replacer(message: String): ByteArray {
         val sb = ArrayList<Byte>();
 
         for (ch in message.toCharArray()) {

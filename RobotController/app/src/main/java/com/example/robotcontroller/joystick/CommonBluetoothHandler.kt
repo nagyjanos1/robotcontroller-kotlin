@@ -387,7 +387,7 @@ class CommonBluetoothHandler(context: Context?, handler: Handler) {
         private val mmOutStream: OutputStream?
         override fun run() {
             Log.i(TAG, "BEGIN mConnectedThread")
-            val buffer = ByteArray(1024)
+            val buffer = ByteArray(20)
             var bytes: Int
 
             // Keep listening to the InputStream while connected
