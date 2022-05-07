@@ -9,12 +9,26 @@
         android:layout_margin="5dp"
         card_view:cardBackgroundColor="#FAFAFA">
 
-        <TextView
-            android:id="@+id/universeListItemName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/universe_name"
-            android:textSize="36sp" />
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/deletableListItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </CheckBox>
+
+            <TextView
+                android:id="@+id/universeListItemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/universe_name"
+                android:textSize="36sp" />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 </layout>

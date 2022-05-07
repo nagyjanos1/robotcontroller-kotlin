@@ -64,6 +64,7 @@ class UniverseListActivity : AppCompatActivity(), OnInputListener {
         // Handle item selection
         return when (item.itemId) {
             R.id.btnAdd -> {
+                // hozzáadás
                 latestUniverse = Universe(null, "", currentFbdlCommandId!!)
 
                 val newFragment = EditUniverseFragment.newInstance("")
@@ -72,9 +73,10 @@ class UniverseListActivity : AppCompatActivity(), OnInputListener {
             }
             R.id.btnDelete -> {
                 // törlés
-
-                universeViewModel.remove()
-
+                val removableUniverse = universeAdapter.getRemovableUniverse()
+                removableUniverse.forEach {
+                    universeViewModel.remove(it)
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

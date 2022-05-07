@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
@@ -17,6 +18,12 @@ class UniverseAdapter(private val onClick: (Universe) -> Unit):
         UniverseDiffCallback()
     ) {
 
+    private var removableUniverseList: MutableList<Universe> = mutableListOf()
+
+   fun getRemovableUniverse(): List<Universe> {
+       return removableUniverseList.toList()
+   }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UniverseViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.universe_item_layout,
@@ -29,6 +36,15 @@ class UniverseAdapter(private val onClick: (Universe) -> Unit):
     override fun onBindViewHolder(holder: UniverseViewHolder, position: Int) {
         val currentUniverseItem = getItem(position)
         holder.bind(currentUniverseItem, position)
+
+        holder.itemView.findViewById<CheckBox>(R.id.deletableListItem).setOnCheckedChangeListener {
+                _, isChecked ->
+            if (isChecked) {
+                removableUniverseList.add(currentUniverseItem)
+            } else {
+                removableUniverseList.remove(currentUniverseItem)
+            }
+        }
     }
 
     class UniverseViewHolder(itemView: View, val onClick: (Universe) -> Unit) :
@@ -44,13 +60,11 @@ class UniverseAdapter(private val onClick: (Universe) -> Unit):
                     onClick(it)
                 }
             }
-
             nameTextView.isEnabled = false;
         }
 
         fun bind(universe: Universe, position: Int) {
             currentUniverse = universe
-
             nameTextView.text = universe.name
         }
     }
