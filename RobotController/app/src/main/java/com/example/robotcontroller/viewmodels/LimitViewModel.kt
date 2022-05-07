@@ -15,12 +15,16 @@ class LimitViewModel(val dataSource: AppDatabase) : ViewModel() {
     }
 
     fun insert(name: String,
-               min: Long,
-               max: Long,
-                universeId: Long
+               min: Int,
+               max: Int,
+               universeId: Long
     ) {
         val limit = Limit(null, name, min, max, universeId)
         dataSource.limitsDao().insertItem(limit)
+    }
+
+    fun update(limit: Limit) {
+        dataSource.limitsDao().updateItem(limit)
     }
 
     fun remove(limit: Limit) {

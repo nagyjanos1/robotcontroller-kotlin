@@ -26,4 +26,8 @@ class UniverseViewModel(val dataSource: AppDatabase) : ViewModel() {
     fun remove(universe: Universe) {
         dataSource.universeDao().deleteItem(universe)
     }
+
+    fun getAllByFbdlId(fbdlId: Long): List<Universe> {
+        return dataSource.universeDao().findAllByFbdlId(fbdlId)
+    }
 }

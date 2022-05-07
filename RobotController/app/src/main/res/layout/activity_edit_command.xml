@@ -33,10 +33,11 @@
         android:text="@string/handle_universe"
         />
 
-    <Spinner
-        android:id="@+id/select_rulebase_universe"
+    <Button
+        android:id="@+id/handle_universe_parameters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/handle_universe_parameters"
         />
 
     <Button

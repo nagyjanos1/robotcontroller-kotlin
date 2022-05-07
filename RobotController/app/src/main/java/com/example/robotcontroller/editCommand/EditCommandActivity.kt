@@ -3,23 +3,26 @@ package com.example.robotcontroller.editCommand
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.robotcontroller.R
 import com.example.robotcontroller.data.AppDatabase
 import com.example.robotcontroller.data.entities.FbdlCommandItem
-import com.example.robotcontroller.data.entities.Universe
+import com.example.robotcontroller.limit.LimitListActivity
 import com.example.robotcontroller.universe.UniverseListActivity
 
 class EditCommandActivity : AppCompatActivity() {
 
     private val editUniverseActivityRequestCode = 1
+    private val editLimitActivityRequestCode = 1
 
     private lateinit var commandName: EditText
-    private lateinit var universeSpinner: Spinner
     private lateinit var setAsDefaultChk: CheckBox
 
     private lateinit var btnHandleUniverse: Button
+    private lateinit var btnHandleUniverseParameters: Button
     private lateinit var btnHandleRules: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +32,10 @@ class EditCommandActivity : AppCompatActivity() {
         var currentFbdlCommandId: Long? = null
 
         commandName = findViewById(R.id.edit_command_name)
-        universeSpinner = findViewById(R.id.select_rulebase_universe)
         setAsDefaultChk = findViewById(R.id.edit_command_current)
 
         btnHandleUniverse = findViewById(R.id.handle_universe)
+        btnHandleUniverseParameters = findViewById(R.id.handle_universe_parameters)
         btnHandleRules = findViewById(R.id.handle_rules)
 
         val bundle: Bundle? = intent.extras
@@ -49,26 +52,18 @@ class EditCommandActivity : AppCompatActivity() {
                 startActivityForResult( intent, editUniverseActivityRequestCode)
             }
 
+            btnHandleUniverseParameters.setOnClickListener {
+                val intent = Intent(this, LimitListActivity()::class.java)
+                intent.putExtra("itemId", currentFbdlCommandId)
+                startActivityForResult( intent, editLimitActivityRequestCode)
+            }
+
             val database: AppDatabase = AppDatabase.getInstance(this)
             val currentFbdlCommand: FbdlCommandItem? = database
                 .fbdlCommandItemDao()
                 .findItemById(currentFbdlCommandId)
 
-            var mutableUniverseList: ArrayList<Universe> = ArrayList()
-
-            var universeList = database
-                .universeDao()
-                .findAllItems()
-                .value
-            if (universeList != null) {
-                for (universe in universeList) {
-                    mutableUniverseList.add(universe)
-                }
-            }
-
-            val universeListAdapter = ArrayAdapter(this, android.R.layout.activity_list_item, mutableUniverseList)
             commandName.setText(currentFbdlCommand?.name.orEmpty())
-            universeSpinner.adapter = universeListAdapter
             setAsDefaultChk.isChecked = currentFbdlCommand?.isDefault ?: false
 
             findViewById<Button>(R.id.edit_btnDelete).setOnClickListener {

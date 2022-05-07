@@ -59,4 +59,10 @@
     <string name="cancel">Cancel</string>
     <string name="btnCancel">Cancel</string>
     <string name="btnDone">Done</string>
+    <string name="handle_universe_parameters">Handle universe parameters</string>
+    <string name="limit_min_value">Min value:</string>
+    <string name="limit_max_value">Max value:</string>
+    <string name="min_value">Min. value</string>
+    <string name="max_value">Max. value</string>
+    <string name="create_limit">Create limit</string>
 </resources>

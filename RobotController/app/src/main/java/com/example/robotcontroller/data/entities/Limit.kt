@@ -16,7 +16,7 @@ import java.io.Serializable
 data class Limit (
     @PrimaryKey(autoGenerate = true) var id: Long?,
     @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "minValue") var minValue: Long?,
-    @ColumnInfo(name = "maxValue") var maxValue: Long?,
+    @ColumnInfo(name = "minValue") var minValue: Int?,
+    @ColumnInfo(name = "maxValue") var maxValue: Int?,
     @ColumnInfo(name = "universeId") var universeId: Long?
 ) : Serializable

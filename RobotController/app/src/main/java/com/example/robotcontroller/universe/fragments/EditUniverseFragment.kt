@@ -12,9 +12,6 @@ import com.example.robotcontroller.R
 import com.example.robotcontroller.universe.OnInputListener
 
 class EditUniverseFragment : DialogFragment() {
-
-    var mOnInputListener: OnInputListener? = null
-
     companion object {
         const val UNIVERSE_NAME: String = "UNIVERSE_NAME"
 
@@ -27,6 +24,7 @@ class EditUniverseFragment : DialogFragment() {
             }
     }
 
+    private var mOnInputListener: OnInputListener? = null
     private lateinit var universeNameEditText: EditText
 
     override fun onCreateView(
@@ -38,16 +36,16 @@ class EditUniverseFragment : DialogFragment() {
         } catch (e: ClassCastException) {
             Log.e("EditUniverseFragment", "onAttach: ClassCastException: ${e.message}")
         }
-        val v: View = inflater.inflate(R.layout.fragment_universe_layout, container, false)
+        val v: View = inflater.inflate(R.layout.fragment_edit_universe_layout, container, false)
+        universeNameEditText = v.findViewById(R.id.edit_universe_name_fragment)!!
 
         v.findViewById<Button>(R.id.btn_done_edit_universe_fragment).setOnClickListener {
             val name = universeNameEditText.text
             mOnInputListener?.sendInput(name.toString())
-            mOnInputListener?.setUniverseToNull()
+            mOnInputListener?.setToNull()
 
             dialog?.dismiss()
         }
-
         v.findViewById<Button>(R.id.btn_cancel_edit_universe_fragment).setOnClickListener {
             dialog?.dismiss()
         }
@@ -58,8 +56,6 @@ class EditUniverseFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dialog?.setTitle("Create universe")
-        universeNameEditText = dialog?.findViewById<EditText>(R.id.edit_universe_name_fragment)!!
         universeNameEditText.requestFocus();
 
         arguments?.let { it1 ->

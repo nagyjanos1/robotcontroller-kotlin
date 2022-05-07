@@ -18,7 +18,7 @@ import com.example.robotcontroller.viewmodels.UniverseViewModel
 
 interface OnInputListener {
     fun sendInput(input: String?)
-    fun setUniverseToNull()
+    fun setToNull()
 }
 
 class UniverseListActivity : AppCompatActivity(), OnInputListener {
@@ -93,7 +93,7 @@ class UniverseListActivity : AppCompatActivity(), OnInputListener {
         }
     }
 
-    override fun setUniverseToNull() {
+    override fun setToNull() {
         latestUniverse = null
     }
 
