@@ -27,7 +27,7 @@
             android:name=".universe.UniverseListActivity"
             android:exported="false" />
         <activity
-            android:name=".listCommand.FbdlCommandListActivity"
+            android:name=".fbdl.FbdlCommandListActivity"
             android:exported="false" />
         <activity
             android:name=".joystick.JoystickActivity"
@@ -35,10 +35,10 @@
             android:label="@string/title_activity_joystick"
             android:theme="@style/Theme.RobotController.NoActionBar" />
         <activity
-            android:name=".addCommand.AddCommandActivity"
+            android:name=".fbdl.AddCommandActivity"
             android:exported="false" />
         <activity
-            android:name=".editCommand.EditCommandActivity"
+            android:name=".fbdl.EditCommandActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

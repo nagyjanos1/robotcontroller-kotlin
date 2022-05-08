@@ -18,9 +18,10 @@ class RuleViewModel(private val dataSource: AppDatabase) : ViewModel() {
                baseLimitId: Long,
                baseUniverseId: Long,
                antecedentLimitId: Long,
-               antecedentUniverseId: Long
+               antecedentUniverseId: Long,
+               fbdlId: Long
     ) {
-        val rule = Rule(null, name, baseLimitId, baseUniverseId, antecedentLimitId, antecedentUniverseId)
+        val rule = Rule(null, name, baseLimitId, baseUniverseId, antecedentLimitId, antecedentUniverseId, fbdlId)
         dataSource.ruleDao().insertItem(rule)
     }
 

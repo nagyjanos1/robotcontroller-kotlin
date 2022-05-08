@@ -9,13 +9,18 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import com.example.robotcontroller.R
+import com.example.robotcontroller.bluetooth.BluetoothHandlerService
 import com.example.robotcontroller.bluetooth.MicroFRIHandler
+import java.lang.Integer.max
 import kotlin.math.atan2
 import kotlin.math.min
 import kotlin.math.sqrt
 
-class JoystickView : View, Runnable {
-
+class JoystickView(
+    context: Context?,
+    attrs: AttributeSet? = null,
+    private val mFriHandler: MicroFRIHandler,
+    private val bluetoothHandlerService: BluetoothHandlerService) : View(context, attrs), Runnable {
 
     private var mButtonStickToBorder: Boolean
     private var borderColor: Int
@@ -27,6 +32,7 @@ class JoystickView : View, Runnable {
     private var mButtonSizeRatio: Float
     private var mBackgroundRadius: Float = 0.0f
 
+    private var mTextPaint: Paint? = null
     private var mPaintCircleButton: Paint? = null
     private var mPaintCircleBorder: Paint? = null
     private var mPaintBackground: Paint? = null
@@ -67,19 +73,15 @@ class JoystickView : View, Runnable {
     private val mLoopInterval: Long = DEFAULT_LOOP_INTERVAL.toLong()
     private var mThread = Thread(this)
 
-    private var mmFriHandler: MicroFRIHandler
+    init {
 
-    constructor(context: Context?, attrs: AttributeSet? = null, mFriHandler: MicroFRIHandler) : super(context, attrs) {
         initPosition()
-
-        mmFriHandler = mFriHandler
-
         val styledAttributes = context!!.theme.obtainStyledAttributes(
             attrs,
             R.styleable.JoystickView,
             0, 0
         )
-        var backgroundColor: Int;
+        val backgroundColor: Int
         try {
             buttonColor = styledAttributes.getColor(
                 R.styleable.JoystickView_JV_buttonColor,
@@ -136,12 +138,15 @@ class JoystickView : View, Runnable {
             styledAttributes.recycle()
         }
 
-        // Initialize the drawing according to attributes
+        mTextPaint = Paint()
+        mTextPaint!!.color = Color.BLACK
+        mTextPaint!!.textSize = 60F
+
         mPaintCircleButton = Paint()
         mPaintCircleButton!!.isAntiAlias = true
         mPaintCircleButton!!.color = buttonColor
         mPaintCircleButton!!.style = Paint.Style.FILL
-        mPaintCircleButton!!.shader = radialGradient;
+        mPaintCircleButton!!.shader = radialGradient
 
         mPaintCircleBorder = Paint()
         mPaintCircleBorder!!.isAntiAlias = true
@@ -154,8 +159,6 @@ class JoystickView : View, Runnable {
         mPaintBackground!!.isAntiAlias = true
         mPaintBackground!!.color = backgroundColor
         mPaintBackground!!.style = Paint.Style.FILL
-
-        // Init Runnable for MultiLongPress
         mRunnableMultipleLongPress =
             Runnable {
                 mOnMultipleLongPressListener?.onMultipleLongPress()
@@ -166,7 +169,6 @@ class JoystickView : View, Runnable {
         super.onSizeChanged(w, h, oldW, oldH)
         initPosition()
 
-        // radius based on smallest size : height OR width
         val d = min(w, h)
         mButtonRadius = (d / 2 * mButtonSizeRatio).toInt()
         mBorderRadius = (d / 2 * mBackgroundSizeRatio).toInt()
@@ -191,9 +193,7 @@ class JoystickView : View, Runnable {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        // setting the measured values to resize the view to a certain width and height
-        val d = min(measure(widthMeasureSpec), measure(heightMeasureSpec))
-        setMeasuredDimension(d, d)
+        setMeasuredDimension(measure(widthMeasureSpec), measure(heightMeasureSpec))
     }
 
 
@@ -256,7 +256,8 @@ class JoystickView : View, Runnable {
                     mHandlerMultipleLongPress.removeCallbacks(mRunnableMultipleLongPress!!)
                 }
 
-                mmFriHandler.sendMoveFrame(getAngle(), getStrength());
+                val instruction = mFriHandler.sendMoveFrame(getAngle(), getStrength());
+                bluetoothHandlerService.sendFrame(instruction)
             }
             MotionEvent.ACTION_POINTER_UP -> {
 
@@ -286,10 +287,15 @@ class JoystickView : View, Runnable {
         invalidate()
 
         return true;
-        //return super.onTouchEvent(event)
     }
 
     override fun onDraw(canvas: Canvas) {
+
+        mTextPaint?.let {
+            canvas.drawText("Angle: ${getAngle()}", 10F, 70F, it)
+            canvas.drawText("Strength: ${getStrength()}", 10F, 140F, it)
+        }
+
         // Draw the background
         mPaintBackground?.let {
             canvas.drawCircle(

@@ -20,7 +20,7 @@ import com.example.robotcontroller.adapter.BluetoothDeviceDataHolder
 import com.example.robotcontroller.adapter.PairedBluetoothDeviceListAdapter
 import com.example.robotcontroller.bluetooth.BluetoothBroadcastReceiver
 import com.example.robotcontroller.joystick.JoystickActivity
-import com.example.robotcontroller.listCommand.FbdlCommandListActivity
+import com.example.robotcontroller.fbdl.FbdlCommandListActivity
 
 class MainActivity() : AppCompatActivity() {
 

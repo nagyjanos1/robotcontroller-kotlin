@@ -22,6 +22,9 @@ interface LimitsDAO {
     @Query("SELECT * FROM limits WHERE id = :limitId")
     fun findItemById(limitId: Long): Limit?
 
+    @Query("SELECT * FROM limits WHERE fbdlId = :fbdlId")
+    fun getAllByFbdlId(fbdlId: Long): List<Limit>?
+
     @Query("SELECT * FROM limits WHERE id IN (:limitIds)")
     fun findItemByIds(limitIds: List<Long>): Array<Limit>?
 

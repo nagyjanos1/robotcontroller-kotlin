@@ -65,8 +65,13 @@ class MicroFRIHandler {
         return replacer(sb.toString())
     }
 
-    fun sendMoveFrame(angle: Int, strength: Int) {
+    fun sendMoveFrame(angle: Int, strength: Int): ByteArray {
+        val sb = StringBuilder("FM")
+        sb.append(angle.toString())
+        sb.append(":")
+        sb.append(strength.toString())
 
+        return replacer(sb.toString())
     }
 
     fun getResponse(msg: ByteArray): String {

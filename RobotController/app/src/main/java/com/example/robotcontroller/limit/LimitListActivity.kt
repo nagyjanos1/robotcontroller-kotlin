@@ -62,7 +62,7 @@ class LimitListActivity : AppCompatActivity(), OnInputListenerForLimit {
                     it.maxValue ?: 0,
                     it.universeId!!,
                     universe?.name!!,
-                    universe?.fbdlCommandItemId!!)
+                    universe.fbdlCommandItemId!!)
             }
 
             limitAdapter.submitList(limitModels)
@@ -111,14 +111,15 @@ class LimitListActivity : AppCompatActivity(), OnInputListenerForLimit {
 
     override fun sendInput(name: String, minValue: Int, maxValue: Int, universeId: Long) {
         if (latestLimitModel?.id == null) {
-            limitViewModel.insert(name, minValue, maxValue, universeId)
+            limitViewModel.insert(name, minValue, maxValue, universeId, currentFbdlCommandId!!)
         } else {
             val limit = Limit(
                 latestLimitModel?.id,
                 name,
                 minValue,
                 maxValue,
-                universeId)
+                universeId,
+                currentFbdlCommandId)
             limitViewModel.update(limit!!)
         }
     }

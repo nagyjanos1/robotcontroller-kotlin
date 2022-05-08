@@ -1,14 +1,14 @@
-package com.example.robotcontroller.editCommand
+package com.example.robotcontroller.fbdl
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputFilter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.robotcontroller.R
+import com.example.robotcontroller.bluetooth.BluetoothHandlerService
+import com.example.robotcontroller.bluetooth.MicroFRIHandler
 import com.example.robotcontroller.data.AppDatabase
 import com.example.robotcontroller.data.entities.FbdlCommandItem
 import com.example.robotcontroller.limit.LimitListActivity
@@ -29,9 +29,17 @@ class EditCommandActivity : AppCompatActivity() {
     private lateinit var btnHandleUniverseParameters: Button
     private lateinit var btnHandleRules: Button
 
+    private lateinit var mFriHandler: MicroFRIHandler
+    private lateinit var mBluetoothHandlerService: BluetoothHandlerService
+
+    /** Lifecycle hooks */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_command)
+
+        mFriHandler = MicroFRIHandler()
+        mBluetoothHandlerService = BluetoothHandlerService(this, mFriHandler)
+        mBluetoothHandlerService.setBluetoothConnection()
 
         var currentFbdlCommandId: Long? = null
 
@@ -85,8 +93,8 @@ class EditCommandActivity : AppCompatActivity() {
                 finish()
             }
 
-            val btnEdit = findViewById<Button>(R.id.edit_btnDone)
-            btnEdit.setOnClickListener {
+            val btnDone = findViewById<Button>(R.id.edit_btnDone)
+            btnDone.setOnClickListener {
                 if (commandNameEditText.text.isNullOrEmpty()) {
                     // validation
                 } else {
@@ -103,20 +111,51 @@ class EditCommandActivity : AppCompatActivity() {
                 finish()
             }
         }
-    }
 
-    private fun editFbdlCommand() {
-        val resultIntent = Intent()
+        val btnSendUniverse = findViewById<Button>(R.id.sendUniverses)
+        btnSendUniverse.setOnClickListener {
 
-        if (commandNameEditText.text.isNullOrEmpty()) {
-            setResult(Activity.RESULT_CANCELED, resultIntent)
-        } else {
-            val name = commandNameEditText.text.toString()
-            val description = commandDescriptionEditText.text.toString()
-            resultIntent.putExtra("name", name)
-            resultIntent.putExtra("description", description)
-            setResult(Activity.RESULT_OK, resultIntent)
+
         }
-        finish()
+
+        val btnSendRules = findViewById<Button>(R.id.sendRules)
+        btnSendRules.setOnClickListener {
+
+        }
+
+        val btnSendAll = findViewById<Button>(R.id.sendAll)
+        btnSendAll.setOnClickListener {
+            val database = AppDatabase.getInstance(this)
+            val universes = database.universeDao().findAllByFbdlId(currentFbdlCommandId!!)
+            val limits = database.limitsDao().getAllByFbdlId(currentFbdlCommandId)
+            val rules = database.ruleDao().getAllByFbdlId(currentFbdlCommandId)
+
+            val initFrame = mFriHandler.createInitFrame(universes.size, 2)
+            mBluetoothHandlerService.sendFrame(initFrame)
+
+            val universeFrame = mFriHandler.createUniverses(ArrayList(universes), ArrayList(limits!!))
+            mBluetoothHandlerService.sendFrame(universeFrame)
+
+            val ruleFrame = mFriHandler.createRule(ArrayList(rules!!))
+            mBluetoothHandlerService.sendFrame(ruleFrame)
+        }
     }
+
+    override fun onStart() {
+        super.onStart()
+        mBluetoothHandlerService.createBluetoothHandler(this.intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        mBluetoothHandlerService.startBluetooth()
+    }
+
+    override fun onDestroy() {
+        mBluetoothHandlerService.stopBluetooth()
+
+        super.onDestroy()
+    }
+
 }

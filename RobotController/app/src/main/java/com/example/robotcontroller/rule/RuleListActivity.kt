@@ -2,15 +2,14 @@ package com.example.robotcontroller.rule
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.robotcontroller.R
-import com.example.robotcontroller.adapter.LimitModel
 import com.example.robotcontroller.adapter.RuleAdapter
 import com.example.robotcontroller.adapter.RuleModel
 import com.example.robotcontroller.data.AppDatabase
@@ -133,7 +132,7 @@ class RuleListActivity : AppCompatActivity(), OnInputListenerForRule {
                   antecedentLimitId: Long)
     {
         if (latestRuleModel?.id == null) {
-            ruleViewModel.insert(name, baseUniverseId, baseLimitId, antecedentUniverseId, antecedentLimitId)
+            ruleViewModel.insert(name, baseUniverseId, baseLimitId, antecedentUniverseId, antecedentLimitId, currentFbdlCommandId!!)
         } else {
             val rule = Rule(
                 latestRuleModel?.id,
@@ -141,8 +140,9 @@ class RuleListActivity : AppCompatActivity(), OnInputListenerForRule {
                 baseUniverseId,
                 baseLimitId,
                 antecedentUniverseId,
-                antecedentLimitId)
-            ruleViewModel.update(rule!!)
+                antecedentLimitId,
+                currentFbdlCommandId)
+            ruleViewModel.update(rule)
         }
     }
 

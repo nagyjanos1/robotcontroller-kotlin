@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".addCommand.AddCommandActivity"
+    tools:context=".fbdl.AddCommandActivity"
     android:padding="16dp">
 
     <TextView

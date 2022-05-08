@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.robotcontroller.data.AppDatabase
 import com.example.robotcontroller.data.entities.Limit
 
-class LimitViewModel(val dataSource: AppDatabase) : ViewModel() {
+class LimitViewModel(private val dataSource: AppDatabase) : ViewModel() {
     fun getById(id: Long): Limit? {
         return dataSource.limitsDao().findItemById(id)
     }
@@ -17,9 +17,10 @@ class LimitViewModel(val dataSource: AppDatabase) : ViewModel() {
     fun insert(name: String,
                min: Int,
                max: Int,
-               universeId: Long
+               universeId: Long,
+               fbdlId: Long
     ) {
-        val limit = Limit(null, name, min, max, universeId)
+        val limit = Limit(null, name, min, max, universeId, fbdlId)
         dataSource.limitsDao().insertItem(limit)
     }
 

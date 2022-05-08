@@ -13,5 +13,6 @@ data class Rule (
     @ColumnInfo(name = "baseUniverseId") var baseUniverseId: Long?,
     @ColumnInfo(name = "baseLimitId") var baseLimitId: Long?,
     @ColumnInfo(name = "antecedentUniverseId") var antecedentUniverseId: Long?,
-    @ColumnInfo(name = "antecedentLimitId") var antecedentLimitId: Long?
+    @ColumnInfo(name = "antecedentLimitId") var antecedentLimitId: Long?,
+    @ColumnInfo(name = "fbdlId") var fbdlId: Long?
 ): Serializable

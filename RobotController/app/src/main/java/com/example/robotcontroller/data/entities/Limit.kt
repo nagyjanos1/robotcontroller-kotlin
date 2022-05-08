@@ -18,5 +18,6 @@ data class Limit (
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "minValue") var minValue: Int?,
     @ColumnInfo(name = "maxValue") var maxValue: Int?,
-    @ColumnInfo(name = "universeId") var universeId: Long?
+    @ColumnInfo(name = "universeId") var universeId: Long?,
+    @ColumnInfo(name = "fbdlId") var fbdlId: Long?
 ) : Serializable

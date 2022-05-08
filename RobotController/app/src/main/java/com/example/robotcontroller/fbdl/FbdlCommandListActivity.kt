@@ -1,4 +1,4 @@
-package com.example.robotcontroller.listCommand
+package com.example.robotcontroller.fbdl
 
 import android.app.Activity
 import android.content.Intent
@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.robotcontroller.MainActivity
 import com.example.robotcontroller.R
 import com.example.robotcontroller.adapter.CommandsAdapter
-import com.example.robotcontroller.addCommand.AddCommandActivity
 import com.example.robotcontroller.data.entities.FbdlCommandItem
-import com.example.robotcontroller.editCommand.EditCommandActivity
 import com.example.robotcontroller.joystick.JoystickActivity
 import com.example.robotcontroller.viewmodels.FbdlCommandItemViewModel
 import com.example.robotcontroller.viewmodels.GenericViewModelFactory
@@ -80,6 +78,7 @@ class FbdlCommandListActivity : AppCompatActivity() {
     private fun adapterOnClick(fbdlCommand: FbdlCommandItem) {
         val intent = Intent(this, EditCommandActivity()::class.java)
         intent.putExtra("itemId", fbdlCommand.itemId)
+        intent.putExtra(MainActivity.EXTRA_ADDRESS, currentDeviceAddress)
         startActivity(intent)
     }
 
