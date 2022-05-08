@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".limit.fragments.EditLimitFragment">
+    tools:context=".rule.fragments.EditRuleFragment">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,41 +13,44 @@
         android:padding="20dp">
 
         <TextView
-            android:id="@+id/edit_limit_fragment_title"
+            android:id="@+id/edit_rule_fragment_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/create_limit"
+            android:text="@string/create_rule"
             android:textSize="36sp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:layout_margin="10dp"/>
 
         <EditText
-            android:id="@+id/editLimitName"
+            android:id="@+id/editRuleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="@string/limit_name" />
-
-        <EditText
-            android:id="@+id/editLimitMinValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/min_value" />
-
-        <EditText
-            android:id="@+id/editLimitMaxValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/max_value" />
+            android:hint="@string/rule_name" />
 
         <Spinner
-            android:id="@+id/editSelectUniverseSpinner"
+            android:id="@+id/editSelectBaseUniverseSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            />
+            android:layout_margin="10dp" />
+
+        <Spinner
+            android:id="@+id/editSelectBaseLimitSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <Spinner
+            android:id="@+id/editSelectAntecedentUniverseSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+        <Spinner
+            android:id="@+id/editSelectAntecedentLimitSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +59,7 @@
             android:layout_margin="10dp">
 
             <Button
-                android:id="@+id/btn_cancel_edit_limit_fragment"
+                android:id="@+id/btn_cancel_edit_rule_fragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnCancel"/>
@@ -66,13 +70,12 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btn_done_edit_limit_fragment"
+                android:id="@+id/btn_done_edit_rule_fragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnDone"/>
 
         </LinearLayout>
-
     </LinearLayout>
 
 </FrameLayout>

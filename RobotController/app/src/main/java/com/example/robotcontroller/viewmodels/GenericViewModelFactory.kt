@@ -25,15 +25,9 @@ class GenericViewModelFactory(private val context: Context) : ViewModelProvider.
                 AppDatabase.getInstance(context)
             ) as T
         }
-        if (modelClass.isAssignableFrom(RuleBaseViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return RuleBaseViewModel(
-                AppDatabase.getInstance(context)
-            ) as T
-        }
         if (modelClass.isAssignableFrom(RuleViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return RuleBaseViewModel(
+            return RuleViewModel(
                 AppDatabase.getInstance(context)
             ) as T
         }

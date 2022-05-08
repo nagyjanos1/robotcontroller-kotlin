@@ -59,7 +59,7 @@ class MicroFRIHandler {
             sb.append("${rule.baseUniverseId}")
 
             sb.append("FE")
-            sb.append("1:1:${rule.ruleUniverseId}|${rule.baseLimitId}:${rule.ruleLimitId}")
+            sb.append("1:1:${rule.antecedentUniverseId}|${rule.baseLimitId}:${rule.antecedentLimitId}")
         }
 
         return replacer(sb.toString())

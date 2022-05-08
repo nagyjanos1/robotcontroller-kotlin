@@ -11,12 +11,14 @@ import com.example.robotcontroller.R
 import com.example.robotcontroller.data.AppDatabase
 import com.example.robotcontroller.data.entities.FbdlCommandItem
 import com.example.robotcontroller.limit.LimitListActivity
+import com.example.robotcontroller.rule.RuleListActivity
 import com.example.robotcontroller.universe.UniverseListActivity
 
 class EditCommandActivity : AppCompatActivity() {
 
     private val editUniverseActivityRequestCode = 1
     private val editLimitActivityRequestCode = 1
+    private val editRuleActivityRequestCode = 1
 
     private lateinit var commandName: EditText
     private lateinit var setAsDefaultChk: CheckBox
@@ -56,6 +58,12 @@ class EditCommandActivity : AppCompatActivity() {
                 val intent = Intent(this, LimitListActivity()::class.java)
                 intent.putExtra("itemId", currentFbdlCommandId)
                 startActivityForResult( intent, editLimitActivityRequestCode)
+            }
+
+            btnHandleRules.setOnClickListener {
+                val intent = Intent(this, RuleListActivity()::class.java)
+                intent.putExtra("itemId", currentFbdlCommandId)
+                startActivityForResult( intent, editRuleActivityRequestCode)
             }
 
             val database: AppDatabase = AppDatabase.getInstance(this)

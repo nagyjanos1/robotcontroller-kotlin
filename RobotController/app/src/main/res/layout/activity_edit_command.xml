@@ -28,23 +28,26 @@
 
     <Button
         android:id="@+id/handle_universe"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/handle_universe"
+        android:layout_margin="10dp"
         />
 
     <Button
         android:id="@+id/handle_universe_parameters"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/handle_universe_parameters"
+        android:layout_margin="10dp"
         />
 
     <Button
         android:id="@+id/handle_rules"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/handle_rules"
+        android:layout_margin="10dp"
         />
 
     <CheckBox

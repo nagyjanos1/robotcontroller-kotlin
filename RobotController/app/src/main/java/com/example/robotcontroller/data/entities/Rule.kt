@@ -10,8 +10,8 @@ import java.io.Serializable
 data class Rule (
     @PrimaryKey(autoGenerate = true) var id: Long?,
     @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "baseLimitId") var baseLimitId: Long?,
     @ColumnInfo(name = "baseUniverseId") var baseUniverseId: Long?,
-    @ColumnInfo(name = "ruleLimitId") var ruleLimitId: Long?,
-    @ColumnInfo(name = "ruleUniverseId") var ruleUniverseId: Long?,
+    @ColumnInfo(name = "baseLimitId") var baseLimitId: Long?,
+    @ColumnInfo(name = "antecedentUniverseId") var antecedentUniverseId: Long?,
+    @ColumnInfo(name = "antecedentLimitId") var antecedentLimitId: Long?
 ): Serializable

@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RobotController">
         <activity
+            android:name=".rule.RuleListActivity"
+            android:exported="false" />
+        <activity
             android:name=".limit.LimitListActivity"
             android:exported="false" />
         <activity

@@ -11,7 +11,6 @@ import com.example.robotcontroller.data.entities.*
     FbdlCommandItem::class,
     Universe::class,
     Limit::class,
-    RuleBase::class,
     Rule::class,
  ], version = 2)
 abstract class AppDatabase : RoomDatabase() {
@@ -19,7 +18,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun fbdlCommandItemDao(): FbdlCommandItemDAO
     abstract fun universeDao(): UniverseDAO
     abstract fun limitsDao(): LimitsDAO
-    abstract fun ruleBaseDao(): RuleBaseDAO
     abstract fun ruleDao(): RuleDAO
 
     companion object {

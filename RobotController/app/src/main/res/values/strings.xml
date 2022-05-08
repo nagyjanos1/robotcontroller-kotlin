@@ -65,4 +65,12 @@
     <string name="min_value">Min. value</string>
     <string name="max_value">Max. value</string>
     <string name="create_limit">Create limit</string>
+    <string name="limit_name">Limit name</string>
+    <string name="create_rule">Create rule</string>
+    <string name="rule_name">Rule name</string>
+    <string name="when">when</string>
+    <string name="is">is</string>
+    <string name="antecedentLimitName">Atecedent limit</string>
+    <string name="antecedentUniverseName">Antecedent universe</string>
+    <string name="rule_base_label">Rule base: </string>
 </resources>

@@ -5,23 +5,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.robotcontroller.R
-import com.example.robotcontroller.data.entities.Limit
 
-class LimitAdapter(private val onClick: (Limit) -> Unit):
-    ListAdapter<Limit, LimitAdapter.LimitViewHolder>(
+class LimitModel(
+    val id: Long?,
+    var name: String,
+    var minValue: Int,
+    var maxValue: Int,
+    var universeId: Long?,
+    val universeName: String,
+    val fbdlId: Long?
+)
+
+class LimitAdapter(private val onClick: (LimitModel) -> Unit):
+    ListAdapter<LimitModel, LimitAdapter.LimitViewHolder>(
         LimitDiffCallback()
     ) {
 
-    private var removableLimitList: MutableList<Limit> = mutableListOf()
+    private var removableLimitList: MutableList<LimitModel> = mutableListOf()
 
-    fun getRemovableLimits(): List<Limit> {
+    fun getRemovableLimits(): List<LimitModel> {
         return removableLimitList.toList()
     }
 
@@ -48,12 +55,14 @@ class LimitAdapter(private val onClick: (Limit) -> Unit):
         }
     }
 
-    class LimitViewHolder(itemView: View, val onClick: (Limit) -> Unit) :
+    class LimitViewHolder(itemView: View, val onClick: (LimitModel) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
 
         private val minValueTextView: TextView = itemView.findViewById(R.id.limitMinValueListItem)
         private val maxValueTextView: TextView = itemView.findViewById(R.id.limitMaxValueListItem)
-        private var currentLimit: Limit? = null
+        private val nameTextView: TextView = itemView.findViewById(R.id.limitNameListItem)
+        private val universeNameTextView: TextView = itemView.findViewById(R.id.universeListItemName)
+        private var currentLimit: LimitModel? = null
 
         init {
             itemView.setOnClickListener {
@@ -65,21 +74,23 @@ class LimitAdapter(private val onClick: (Limit) -> Unit):
             maxValueTextView.isEnabled = false;
         }
 
-        fun bind(limit: Limit, position: Int) {
+        fun bind(limit: LimitModel, position: Int) {
             currentLimit = limit
 
             minValueTextView.text = limit.minValue.toString()
             maxValueTextView.text = limit.maxValue.toString()
+            nameTextView.text = limit.name
+            universeNameTextView.text = limit.universeName
         }
     }
 
-    class LimitDiffCallback : DiffUtil.ItemCallback<Limit>() {
-        override fun areItemsTheSame(oldItem: Limit, newItem: Limit): Boolean {
+    class LimitDiffCallback : DiffUtil.ItemCallback<LimitModel>() {
+        override fun areItemsTheSame(oldItem: LimitModel, newItem: LimitModel): Boolean {
             return oldItem.id == newItem.id
         }
 
         @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: Limit, newItem: Limit): Boolean {
+        override fun areContentsTheSame(oldItem: LimitModel, newItem: LimitModel): Boolean {
             return oldItem == newItem
         }
     }

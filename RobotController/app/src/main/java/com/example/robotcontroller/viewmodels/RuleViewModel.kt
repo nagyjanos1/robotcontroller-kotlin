@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.robotcontroller.data.AppDatabase
 import com.example.robotcontroller.data.entities.Rule
 
-class RuleViewModel(val dataSource: AppDatabase) : ViewModel() {
+class RuleViewModel(private val dataSource: AppDatabase) : ViewModel() {
     fun getById(id: Long): Rule? {
         return dataSource.ruleDao().findItemById(id)
     }
@@ -16,16 +16,24 @@ class RuleViewModel(val dataSource: AppDatabase) : ViewModel() {
 
     fun insert(name: String,
                baseLimitId: Long,
-               baseUnverseId: Long,
-               ruleLimitId: Long,
-               ruleUniverseId: Long
+               baseUniverseId: Long,
+               antecedentLimitId: Long,
+               antecedentUniverseId: Long
     ) {
-        val rule = Rule(null, name, baseLimitId, baseUnverseId, ruleLimitId, ruleUniverseId)
+        val rule = Rule(null, name, baseLimitId, baseUniverseId, antecedentLimitId, antecedentUniverseId)
         dataSource.ruleDao().insertItem(rule)
     }
 
     fun remove(rule: Rule) {
         dataSource.ruleDao().deleteItem(rule)
+    }
+
+    fun update(rule: Rule) {
+        dataSource.ruleDao().updateItem(rule)
+    }
+
+    fun findItemByIds(ruleIds: List<Long>): List<Rule>? {
+        return dataSource.ruleDao().findItemByIds(ruleIds)
     }
 }
 

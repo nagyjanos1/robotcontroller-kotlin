@@ -20,4 +20,7 @@ interface RuleDAO {
 
     @Query("SELECT * FROM rules WHERE id = :ruleId")
     fun findItemById(ruleId: Long): Rule?
+
+    @Query("SELECT * FROM rules WHERE id IN (:ruleIds)")
+    fun findItemByIds(ruleIds: List<Long>): List<Rule>?
 }

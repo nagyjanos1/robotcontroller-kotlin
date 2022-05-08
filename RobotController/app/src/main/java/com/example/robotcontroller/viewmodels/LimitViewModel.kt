@@ -30,4 +30,12 @@ class LimitViewModel(val dataSource: AppDatabase) : ViewModel() {
     fun remove(limit: Limit) {
         dataSource.limitsDao().deleteItem(limit)
     }
+
+    fun findItemByIds(limitIds: List<Long>): Array<Limit>? {
+        return dataSource.limitsDao().findItemByIds(limitIds)
+    }
+
+    fun getAllByUniverseId(universeId: Long): List<Limit> {
+        return dataSource.limitsDao().findItemByUniverseId(universeId)
+    }
 }

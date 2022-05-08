@@ -4,10 +4,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/universeSpinnerItemName"
+        android:id="@+id/limitSpinnerItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/universe_name"
+        android:text="@string/limit_name"
         android:textAlignment="center"
         android:padding="10dp"
         android:textSize="18sp"/>

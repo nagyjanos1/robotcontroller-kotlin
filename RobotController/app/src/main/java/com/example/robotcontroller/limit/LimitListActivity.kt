@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.robotcontroller.R
 import com.example.robotcontroller.adapter.LimitAdapter
+import com.example.robotcontroller.adapter.LimitModel
 import com.example.robotcontroller.data.AppDatabase
 import com.example.robotcontroller.data.entities.Limit
 import com.example.robotcontroller.limit.fragments.EditLimitFragment
@@ -18,7 +19,7 @@ import com.example.robotcontroller.viewmodels.GenericViewModelFactory
 import com.example.robotcontroller.viewmodels.LimitViewModel
 
 interface OnInputListenerForLimit {
-    fun sendInput(minValue: Int, maxValue: Int, universeId: Long)
+    fun sendInput(name: String, minValue: Int, maxValue: Int, universeId: Long)
     fun setToNull()
 }
 
@@ -27,7 +28,7 @@ class LimitListActivity : AppCompatActivity(), OnInputListenerForLimit {
     private val newLimitActivityRequestCode = 1
     private lateinit var limitAdapter: LimitAdapter
 
-    private var latestLimit : Limit? = null
+    private var latestLimitModel : LimitModel? = null
     private var currentFbdlCommandId: Long? = null
 
     private val limitViewModel by viewModels<LimitViewModel> {
@@ -51,7 +52,20 @@ class LimitListActivity : AppCompatActivity(), OnInputListenerForLimit {
         recyclerView.adapter = limitAdapter
 
         limitViewModel.getAll().observe(this){ items ->
-            limitAdapter.submitList(items)
+            val limitModels = items.map {
+                val universe = AppDatabase.getInstance(this).universeDao().findItemById(it.universeId!!)
+
+                LimitModel(
+                    it.id,
+                    it.name,
+                    it.minValue ?: 0,
+                    it.maxValue ?: 0,
+                    it.universeId!!,
+                    universe?.name!!,
+                    universe?.fbdlCommandItemId!!)
+            }
+
+            limitAdapter.submitList(limitModels)
         }
     }
 
@@ -66,16 +80,27 @@ class LimitListActivity : AppCompatActivity(), OnInputListenerForLimit {
         return when (item.itemId) {
             R.id.btnAdd -> {
                 // hozzáadás
-                latestLimit = Limit(null, "", 0, 0, null)
+                latestLimitModel = LimitModel(
+                    null,
+                    "",
+                    0,
+                    0,
+                    null,
+                    "",
+                    currentFbdlCommandId)
 
-                val newFragment = EditLimitFragment.newInstance(0, 0, 0, currentFbdlCommandId)
+                val newFragment = EditLimitFragment.newInstance(latestLimitModel!!)
                 newFragment.show(supportFragmentManager, "Set limit name")
                 true
             }
             R.id.btnDelete -> {
                 // törlés
-                val removableLimit = limitAdapter.getRemovableLimits()
-                removableLimit.forEach {
+                val removableLimitModels = limitAdapter.getRemovableLimits()
+                val removableLimitIds = removableLimitModels.map {
+                    it.id!!
+                }
+                val removableLimit = limitViewModel.findItemByIds(removableLimitIds)
+                removableLimit?.forEach {
                     limitViewModel.remove(it)
                 }
                 true
@@ -84,34 +109,41 @@ class LimitListActivity : AppCompatActivity(), OnInputListenerForLimit {
         }
     }
 
-    override fun sendInput(minValue: Int, maxValue: Int, universeId: Long) {
-        latestLimit?.minValue = minValue
-        latestLimit?.maxValue = maxValue
-        latestLimit?.universeId = universeId
-
-        if (latestLimit?.id == null) {
-            limitViewModel.insert("", minValue, maxValue, universeId)
+    override fun sendInput(name: String, minValue: Int, maxValue: Int, universeId: Long) {
+        if (latestLimitModel?.id == null) {
+            limitViewModel.insert(name, minValue, maxValue, universeId)
         } else {
-            limitViewModel.update(latestLimit!!)
+            val limit = Limit(
+                latestLimitModel?.id,
+                name,
+                minValue,
+                maxValue,
+                universeId)
+            limitViewModel.update(limit!!)
         }
     }
 
     override fun setToNull() {
-        latestLimit = null
+        latestLimitModel = null
     }
 
-    private fun adapterOnClick(limit: Limit) {
-        latestLimit = limit
+    private fun adapterOnClick(limit: LimitModel) {
+        latestLimitModel = limit
 
-        val universe = latestLimit!!.universeId?.let {
+        val universe = latestLimitModel!!.universeId?.let {
             AppDatabase.getInstance(this).universeDao().findItemById(it)
         }
 
-        val newFragment = EditLimitFragment.newInstance(
-            latestLimit!!.minValue,
-            latestLimit!!.maxValue,
-            universe!!.id,
-            universe.fbdlCommandItemId)
+        val limitModel = LimitModel(
+            limit.id,
+            limit.name,
+            limit.minValue ?: 0,
+            limit.maxValue ?: 0,
+            limit.universeId!!,
+            universe?.name!!,
+            universe.fbdlCommandItemId!!)
+
+        val newFragment = EditLimitFragment.newInstance(limitModel)
         newFragment.show(supportFragmentManager, "Set limit name")
     }
 

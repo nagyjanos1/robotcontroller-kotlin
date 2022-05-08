@@ -11,13 +11,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
 
             <CheckBox
                 android:id="@+id/deletableListItem"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp">
 
             </CheckBox>
 
@@ -26,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/universe_name"
-                android:textSize="36sp" />
+                android:textSize="24sp" />
 
         </LinearLayout>
 
