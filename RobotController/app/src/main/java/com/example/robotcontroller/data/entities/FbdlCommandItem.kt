@@ -9,7 +9,7 @@ import java.io.Serializable
 data class FbdlCommandItem (
     @PrimaryKey(autoGenerate = true) var itemId: Long?,
     @ColumnInfo(name = "name") var name: String,
-    @ColumnInfo(name = "fbdl") var fbdl: String,
+    @ColumnInfo(name = "description") var description: String,
     @ColumnInfo(name = "current") var isDefault: Boolean
 ) : Serializable
 

@@ -26,6 +26,15 @@
         android:layout_height="wrap_content"
         android:hint="@string/please_give_it_a_name" />
 
+    <EditText
+        android:id="@+id/edit_command_description"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="left|top"
+        android:inputType="textMultiLine"
+        tools:ignore="RtlHardcoded"
+        android:hint="@string/please_write_fbdl_description" />
+
     <Button
         android:id="@+id/handle_universe"
         android:layout_width="match_parent"
@@ -50,11 +59,21 @@
         android:layout_margin="10dp"
         />
 
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
     <CheckBox
         android:id="@+id/edit_command_current"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/set_as_default"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,5 +102,50 @@
             android:text="@string/edit_btnDone" />
 
     </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/sendUniverses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send_universe" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/sendRules"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send_rules" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/sendAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send_all" />
+
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
 
 </LinearLayout>

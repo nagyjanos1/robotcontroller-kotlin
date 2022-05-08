@@ -23,9 +23,18 @@
         <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/menu/nav_menu.xml" value="0.3625" />
         <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1575" />
         <entry key="..\:/Users/nagyj/AndroidStudioProjects/RobotController/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1575" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/banner.xml" value="0.194" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.223" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.223" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_baseline_videogame_asset_24.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_bluetooth_disabled.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_bluetooth_on.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_bluetooth_refresh.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_fbdl_list.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_launcher_background.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/drawable/ic_rule_database.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_add_command.xml" value="0.3625" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_command_card.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_edit_command.xml" value="0.3625" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/layout/activity_edit_universe.xml" value="0.1859375" />
@@ -57,6 +66,9 @@
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/menu/fbdllist_option_menu.xml" value="0.3625" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/menu/general_crud_option.xml" value="0.3625" />
         <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/menu/main_option_menu.xml" value="0.3625" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/mipmap-anydpi-v26/ic_banner.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.194" />
+        <entry key="..\:/Users/nagyj/source/robotcontroller-kotlin/RobotController/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.194" />
       </map>
     </option>
   </component>

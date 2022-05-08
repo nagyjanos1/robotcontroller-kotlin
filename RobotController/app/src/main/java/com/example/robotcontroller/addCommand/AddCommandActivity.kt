@@ -11,7 +11,7 @@ import com.example.robotcontroller.R
 class AddCommandActivity : AppCompatActivity() {
 
     private lateinit var commandName: EditText
-    private lateinit var commandText: EditText
+    private lateinit var commandDescriptionText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,17 +22,17 @@ class AddCommandActivity : AppCompatActivity() {
         }
 
         commandName = findViewById(R.id.add_command_name)
-        commandText = findViewById(R.id.add_command_fbdl)
+        commandDescriptionText = findViewById(R.id.add_command_description)
     }
 
     private fun addFbdlCommand() {
         val resultIntent = Intent()
 
-        if (commandName.text.isNullOrEmpty() || commandText.text.isNullOrEmpty()) {
+        if (commandName.text.isNullOrEmpty() || commandDescriptionText.text.isNullOrEmpty()) {
             setResult(Activity.RESULT_CANCELED, resultIntent)
         } else {
             val name = commandName.text.toString()
-            val description = commandText.text.toString()
+            val description = commandDescriptionText.text.toString()
             resultIntent.putExtra("name", name)
             resultIntent.putExtra("fbdl command", description)
             setResult(Activity.RESULT_OK, resultIntent)

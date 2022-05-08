@@ -27,11 +27,11 @@
         android:hint="@string/please_give_it_a_name" />
 
     <EditText
-        android:id="@+id/add_command_fbdl"
+        android:id="@+id/add_command_description"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:gravity="left|top"
-        android:hint="@string/please_write_fbdl_command"
+        android:hint="@string/please_write_fbdl_description"
         android:inputType="textMultiLine"
         tools:ignore="RtlHardcoded" />
 

@@ -34,11 +34,21 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
 
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
+
         <Spinner
             android:id="@+id/editSelectBaseLimitSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
 
         <Spinner
             android:id="@+id/editSelectAntecedentUniverseSpinner"
@@ -46,11 +56,21 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
 
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
+
         <Spinner
             android:id="@+id/editSelectAntecedentLimitSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"            />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"

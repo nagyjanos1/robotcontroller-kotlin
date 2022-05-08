@@ -89,9 +89,9 @@ class FbdlCommandListActivity : AppCompatActivity() {
         if (requestCode == newFbdlCommandActivityRequestCode && resultCode == Activity.RESULT_OK) {
             intentData?.let { data ->
                 val fbdlCommandName = data.getStringExtra("name")
-                val fbdlCommandText = data.getStringExtra("fbdl command")
+                val fbdlCommandDescription = data.getStringExtra("description")
 
-                fbdlListViewModel.insert(fbdlCommandName ?: "", fbdlCommandText ?: "")
+                fbdlListViewModel.insert(fbdlCommandName ?: "", fbdlCommandDescription ?: "")
             }
         }
     }

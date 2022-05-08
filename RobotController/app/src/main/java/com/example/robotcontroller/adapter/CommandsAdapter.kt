@@ -52,7 +52,7 @@ class CommandsAdapter(private val onClick: (FbdlCommandItem) -> Unit):
             currentFbdlCommandItem = commandItem
 
             name.text = commandItem.name
-            fbdlCommand.text = commandItem.fbdl
+            fbdlCommand.text = commandItem.description
             isDefaultCommand.isChecked = commandItem.isDefault
         }
     }
