@@ -14,8 +14,8 @@ class FbdlCommandItemViewModel(val dataSource: AppDatabase) : ViewModel() {
         return dataSource.fbdlCommandItemDao().findAllItems()
     }
 
-    fun insert(name: String, commandText: String) {
-        val fbdl = FbdlCommandItem(null, name, commandText, false)
+    fun insert(name: String, description: String) {
+        val fbdl = FbdlCommandItem(null, name, description, false)
         dataSource.fbdlCommandItemDao().insertItem(fbdl)
     }
 

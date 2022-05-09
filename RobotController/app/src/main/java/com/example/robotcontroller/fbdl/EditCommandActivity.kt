@@ -17,6 +17,10 @@ import com.example.robotcontroller.universe.UniverseListActivity
 
 class EditCommandActivity : AppCompatActivity() {
 
+    companion object {
+        val FBDL_ID : String = "FBDL_ID"
+    }
+
     private val editUniverseActivityRequestCode = 1
     private val editLimitActivityRequestCode = 1
     private val editRuleActivityRequestCode = 1
@@ -53,7 +57,7 @@ class EditCommandActivity : AppCompatActivity() {
 
         val bundle: Bundle? = intent.extras
         if (bundle != null) {
-            currentFbdlCommandId = bundle.getLong("itemId")
+            currentFbdlCommandId = bundle.getLong(FBDL_ID)
         }
 
         currentFbdlCommandId?.let {
@@ -112,17 +116,6 @@ class EditCommandActivity : AppCompatActivity() {
             }
         }
 
-        val btnSendUniverse = findViewById<Button>(R.id.sendUniverses)
-        btnSendUniverse.setOnClickListener {
-
-
-        }
-
-        val btnSendRules = findViewById<Button>(R.id.sendRules)
-        btnSendRules.setOnClickListener {
-
-        }
-
         val btnSendAll = findViewById<Button>(R.id.sendAll)
         btnSendAll.setOnClickListener {
             val database = AppDatabase.getInstance(this)
@@ -130,7 +123,7 @@ class EditCommandActivity : AppCompatActivity() {
             val limits = database.limitsDao().getAllByFbdlId(currentFbdlCommandId)
             val rules = database.ruleDao().getAllByFbdlId(currentFbdlCommandId)
 
-            val initFrame = mFriHandler.createInitFrame(universes.size, 2)
+            val initFrame = mFriHandler.createInitFrame(universes.size, rules?.size ?: 0)
             mBluetoothHandlerService.sendFrame(initFrame)
 
             val universeFrame = mFriHandler.createUniverses(ArrayList(universes), ArrayList(limits!!))

@@ -10,6 +10,11 @@ import com.example.robotcontroller.R
 
 class AddCommandActivity : AppCompatActivity() {
 
+    companion object {
+        val FBDL_NAME : String = "NAME"
+        val FBDL_DESCRIPTION : String = "DESCRIPTION"
+    }
+
     private lateinit var commandName: EditText
     private lateinit var commandDescriptionText: EditText
 
@@ -33,8 +38,8 @@ class AddCommandActivity : AppCompatActivity() {
         } else {
             val name = commandName.text.toString()
             val description = commandDescriptionText.text.toString()
-            resultIntent.putExtra("name", name)
-            resultIntent.putExtra("fbdl command", description)
+            resultIntent.putExtra(FBDL_NAME, name)
+            resultIntent.putExtra(FBDL_DESCRIPTION, description)
             setResult(Activity.RESULT_OK, resultIntent)
         }
         finish()

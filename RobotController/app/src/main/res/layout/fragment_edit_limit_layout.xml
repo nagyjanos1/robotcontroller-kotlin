@@ -32,12 +32,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:inputType="numberDecimal"
             android:hint="@string/min_value" />
 
         <EditText
             android:id="@+id/editLimitMaxValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
             android:layout_margin="10dp"
             android:hint="@string/max_value" />
 

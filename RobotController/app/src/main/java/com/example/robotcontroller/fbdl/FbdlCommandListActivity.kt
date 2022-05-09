@@ -15,6 +15,9 @@ import com.example.robotcontroller.MainActivity
 import com.example.robotcontroller.R
 import com.example.robotcontroller.adapter.CommandsAdapter
 import com.example.robotcontroller.data.entities.FbdlCommandItem
+import com.example.robotcontroller.fbdl.AddCommandActivity.Companion.FBDL_DESCRIPTION
+import com.example.robotcontroller.fbdl.AddCommandActivity.Companion.FBDL_NAME
+import com.example.robotcontroller.fbdl.EditCommandActivity.Companion.FBDL_ID
 import com.example.robotcontroller.joystick.JoystickActivity
 import com.example.robotcontroller.viewmodels.FbdlCommandItemViewModel
 import com.example.robotcontroller.viewmodels.GenericViewModelFactory
@@ -77,7 +80,7 @@ class FbdlCommandListActivity : AppCompatActivity() {
 
     private fun adapterOnClick(fbdlCommand: FbdlCommandItem) {
         val intent = Intent(this, EditCommandActivity()::class.java)
-        intent.putExtra("itemId", fbdlCommand.itemId)
+        intent.putExtra(FBDL_ID, fbdlCommand.itemId)
         intent.putExtra(MainActivity.EXTRA_ADDRESS, currentDeviceAddress)
         startActivity(intent)
     }
@@ -87,8 +90,8 @@ class FbdlCommandListActivity : AppCompatActivity() {
 
         if (requestCode == newFbdlCommandActivityRequestCode && resultCode == Activity.RESULT_OK) {
             intentData?.let { data ->
-                val fbdlCommandName = data.getStringExtra("name")
-                val fbdlCommandDescription = data.getStringExtra("description")
+                val fbdlCommandName = data.getStringExtra(FBDL_NAME)
+                val fbdlCommandDescription = data.getStringExtra(FBDL_DESCRIPTION)
 
                 fbdlListViewModel.insert(fbdlCommandName ?: "", fbdlCommandDescription ?: "")
             }

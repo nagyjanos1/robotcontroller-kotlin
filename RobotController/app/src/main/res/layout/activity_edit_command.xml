@@ -111,40 +111,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"/>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/sendAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/sendUniverses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/send_universe" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/sendRules"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/send_rules" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/sendAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/send_all" />
-
-        </LinearLayout>
+            android:text="@string/send_fbdl" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"

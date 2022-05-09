@@ -75,6 +75,6 @@
     <string name="rule_base_label">Rule base: </string>
     <string name="send_universe">Send universe</string>
     <string name="send_rules">Send Rules</string>
-    <string name="send_all">Send all</string>
+    <string name="send_fbdl">Send FBDL</string>
     <string name="please_write_fbdl_description">Please, write some description</string>
 </resources>
