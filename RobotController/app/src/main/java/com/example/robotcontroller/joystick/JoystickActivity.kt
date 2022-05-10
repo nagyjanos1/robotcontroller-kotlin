@@ -1,42 +1,39 @@
 package com.example.robotcontroller.joystick
 
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.robotcontroller.R
-import com.example.robotcontroller.bluetooth.BluetoothHandlerService
-import com.example.robotcontroller.bluetooth.MicroFRIHandler
+import com.example.robotcontroller.bluetooth.BluetoothCommunicationService
+import com.example.robotcontroller.bluetooth.MicroFRIMessageComposer
 
 class JoystickActivity: AppCompatActivity() {
 
-    private lateinit var mFriHandler: MicroFRIHandler
-    private lateinit var mBluetoothHandlerService: BluetoothHandlerService
+    private lateinit var mFriMessageComposer: MicroFRIMessageComposer
+    private lateinit var mBluetoothCommunicationService: BluetoothCommunicationService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mFriHandler = MicroFRIHandler()
-        mBluetoothHandlerService = BluetoothHandlerService(this, mFriHandler)
-        mBluetoothHandlerService.setBluetoothConnection()
+        mFriMessageComposer = MicroFRIMessageComposer()
+        mBluetoothCommunicationService = BluetoothCommunicationService(this, mFriMessageComposer)
+        mBluetoothCommunicationService.setBluetoothConnection()
 
-        val joystickView = JoystickView(this, null, mFriHandler, mBluetoothHandlerService)
+        val joystickView = JoystickView(this, null, mFriMessageComposer, mBluetoothCommunicationService)
         setContentView(joystickView)
         //setContentView(R.layout.activity_joystick)
     }
 
     override fun onStart() {
         super.onStart()
-        mBluetoothHandlerService.createBluetoothHandler(this.intent)
+        mBluetoothCommunicationService.createBluetoothHandler(this.intent)
     }
 
     override fun onResume() {
         super.onResume()
-        mBluetoothHandlerService.startBluetooth()
+        mBluetoothCommunicationService.startBluetooth()
     }
 
     override fun onDestroy() {
-        mBluetoothHandlerService.stopBluetooth()
+        mBluetoothCommunicationService.stopBluetooth()
         super.onDestroy()
     }
 }

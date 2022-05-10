@@ -7,8 +7,8 @@ import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.robotcontroller.R
-import com.example.robotcontroller.bluetooth.BluetoothHandlerService
-import com.example.robotcontroller.bluetooth.MicroFRIHandler
+import com.example.robotcontroller.bluetooth.BluetoothCommunicationService
+import com.example.robotcontroller.bluetooth.MicroFRIMessageComposer
 import com.example.robotcontroller.data.AppDatabase
 import com.example.robotcontroller.data.entities.FbdlCommandItem
 import com.example.robotcontroller.limit.LimitListActivity
@@ -33,17 +33,17 @@ class EditCommandActivity : AppCompatActivity() {
     private lateinit var btnHandleUniverseParameters: Button
     private lateinit var btnHandleRules: Button
 
-    private lateinit var mFriHandler: MicroFRIHandler
-    private lateinit var mBluetoothHandlerService: BluetoothHandlerService
+    private lateinit var mFriMessageComposer: MicroFRIMessageComposer
+    private lateinit var mBluetoothCommunicationService: BluetoothCommunicationService
 
     /** Lifecycle hooks */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_command)
 
-        mFriHandler = MicroFRIHandler()
-        mBluetoothHandlerService = BluetoothHandlerService(this, mFriHandler)
-        mBluetoothHandlerService.setBluetoothConnection()
+        mFriMessageComposer = MicroFRIMessageComposer()
+        mBluetoothCommunicationService = BluetoothCommunicationService(this, mFriMessageComposer)
+        mBluetoothCommunicationService.setBluetoothConnection()
 
         var currentFbdlCommandId: Long? = null
 
@@ -123,30 +123,30 @@ class EditCommandActivity : AppCompatActivity() {
             val limits = database.limitsDao().getAllByFbdlId(currentFbdlCommandId)
             val rules = database.ruleDao().getAllByFbdlId(currentFbdlCommandId)
 
-            val initFrame = mFriHandler.createInitFrame(universes.size, rules?.size ?: 0)
-            mBluetoothHandlerService.sendFrame(initFrame)
+            val initFrame = mFriMessageComposer.createInitFrame(universes.size, rules?.size ?: 0)
+            mBluetoothCommunicationService.sendFrame(initFrame)
 
-            val universeFrame = mFriHandler.createUniverses(ArrayList(universes), ArrayList(limits!!))
-            mBluetoothHandlerService.sendFrame(universeFrame)
+            val universeFrame = mFriMessageComposer.createUniverses(ArrayList(universes), ArrayList(limits!!))
+            mBluetoothCommunicationService.sendFrame(universeFrame)
 
-            val ruleFrame = mFriHandler.createRule(ArrayList(rules!!))
-            mBluetoothHandlerService.sendFrame(ruleFrame)
+            val ruleFrame = mFriMessageComposer.createRule(ArrayList(rules!!))
+            mBluetoothCommunicationService.sendFrame(ruleFrame)
         }
     }
 
     override fun onStart() {
         super.onStart()
-        mBluetoothHandlerService.createBluetoothHandler(this.intent)
+        mBluetoothCommunicationService.createBluetoothHandler(this.intent)
     }
 
     override fun onResume() {
         super.onResume()
 
-        mBluetoothHandlerService.startBluetooth()
+        mBluetoothCommunicationService.startBluetooth()
     }
 
     override fun onDestroy() {
-        mBluetoothHandlerService.stopBluetooth()
+        mBluetoothCommunicationService.stopBluetooth()
 
         super.onDestroy()
     }

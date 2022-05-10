@@ -9,9 +9,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import com.example.robotcontroller.R
-import com.example.robotcontroller.bluetooth.BluetoothHandlerService
-import com.example.robotcontroller.bluetooth.MicroFRIHandler
-import java.lang.Integer.max
+import com.example.robotcontroller.bluetooth.BluetoothCommunicationService
+import com.example.robotcontroller.bluetooth.MicroFRIMessageComposer
 import kotlin.math.atan2
 import kotlin.math.min
 import kotlin.math.sqrt
@@ -19,8 +18,8 @@ import kotlin.math.sqrt
 class JoystickView(
     context: Context?,
     attrs: AttributeSet? = null,
-    private val mFriHandler: MicroFRIHandler,
-    private val bluetoothHandlerService: BluetoothHandlerService) : View(context, attrs), Runnable {
+    private val mFriMessageComposer: MicroFRIMessageComposer,
+    private val bluetoothCommunicationService: BluetoothCommunicationService) : View(context, attrs), Runnable {
 
     private var mButtonStickToBorder: Boolean
     private var borderColor: Int
@@ -256,8 +255,8 @@ class JoystickView(
                     mHandlerMultipleLongPress.removeCallbacks(mRunnableMultipleLongPress!!)
                 }
 
-                val instruction = mFriHandler.sendMoveFrame(getAngle(), getStrength());
-                bluetoothHandlerService.sendFrame(instruction)
+                val instruction = mFriMessageComposer.sendMoveFrame(getAngle(), getStrength());
+                bluetoothCommunicationService.sendFrame(instruction)
             }
             MotionEvent.ACTION_POINTER_UP -> {
 

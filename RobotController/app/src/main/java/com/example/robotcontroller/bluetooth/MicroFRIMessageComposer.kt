@@ -6,7 +6,7 @@ import com.example.robotcontroller.data.entities.Universe
 import java.lang.Error
 import java.lang.StringBuilder
 
-class MicroFRIHandler {
+class MicroFRIMessageComposer {
 
     private val frameByte: Byte = 255.toByte()
     private val okByte: Byte = 10
@@ -100,7 +100,7 @@ class MicroFRIHandler {
         for (ch in message.toCharArray()) {
             when (ch) {
                 'F' -> {
-                    sb.add(255.toByte())
+                    sb.add(frameByte)
                 };
                 'I' -> sb.add(1)
                 'U' -> sb.add(2)

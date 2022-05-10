@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothServerSocket
 import android.bluetooth.BluetoothSocket
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -14,7 +13,7 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.util.*
 
-class CommonBluetoothHandler(handler: Handler) {
+class CommonBluetoothConnectionHandler(handler: Handler) {
 
     companion object {
         val MY_UUID_INSECURE: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
@@ -153,7 +152,7 @@ class CommonBluetoothHandler(handler: Handler) {
         }
 
         // Start the thread to manage the connection and perform transmissions
-        mConnectedThread = ConnectedThread(socket!!, socketType)
+        mConnectedThread = ConnectedThread(socket!!)
         mConnectedThread!!.start()
 
         // Send the name of the connected device back to the UI Activity
@@ -222,7 +221,7 @@ class CommonBluetoothHandler(handler: Handler) {
         updateUserInterfaceTitle()
 
         // Start the service over to restart listening mode
-        this@CommonBluetoothHandler.start()
+        this@CommonBluetoothConnectionHandler.start()
     }
 
     /**
@@ -240,7 +239,7 @@ class CommonBluetoothHandler(handler: Handler) {
         updateUserInterfaceTitle()
 
         // Start the service over to restart listening mode
-        this@CommonBluetoothHandler.start()
+        this@CommonBluetoothConnectionHandler.start()
     }
 
     @SuppressLint("MissingPermission")
@@ -268,7 +267,7 @@ class CommonBluetoothHandler(handler: Handler) {
 
                 // If a connection was accepted
                 if (socket != null) {
-                    synchronized(this@CommonBluetoothHandler) {
+                    synchronized(this@CommonBluetoothConnectionHandler) {
                         when (mState) {
                             STATE_LISTEN, STATE_CONNECTING ->                                 // Situation normal. Start the connected thread.
                                 connected(
@@ -299,7 +298,7 @@ class CommonBluetoothHandler(handler: Handler) {
             try {
                 mmServerSocket!!.close()
             } catch (e: IOException) {
-                Log.e(TAG, "Socket Type" + mSocketType + "close() of server failed", e)
+                Log.e(TAG, "Socket Type ${mSocketType}  close() of server failed", e)
             }
         }
 
@@ -309,7 +308,6 @@ class CommonBluetoothHandler(handler: Handler) {
 
             // Create a new listening server socket
             try {
-                //tmp = mAdapter?.listenUsingInsecureRfcommWithServiceRecord("CommonBluetoothHandler", MY_UUID_INSECURE)
                 tmp = mAdapter?.listenUsingRfcommWithServiceRecord("CommonBluetoothHandler", MY_UUID_INSECURE)
             } catch (e: IOException) {
                 Log.e(TAG, "Socket Type: $mSocketType listen() failed", e)
@@ -324,6 +322,7 @@ class CommonBluetoothHandler(handler: Handler) {
         Thread() {
         private val mmSocket: BluetoothSocket?
         private val mSocketType: String
+
         override fun run() {
             Log.i(TAG, "BEGIN mConnectThread SocketType:$mSocketType")
             name = "ConnectThread$mSocketType"
@@ -350,7 +349,7 @@ class CommonBluetoothHandler(handler: Handler) {
             }
 
             // Reset the ConnectThread because we're done
-            synchronized(this@CommonBluetoothHandler) {
+            synchronized(this@CommonBluetoothConnectionHandler) {
                 mConnectThread = null
             }
 
@@ -380,7 +379,7 @@ class CommonBluetoothHandler(handler: Handler) {
         }
     }
 
-    private inner class ConnectedThread(socket: BluetoothSocket, socketType: String) :
+    private inner class ConnectedThread(socket: BluetoothSocket) :
         Thread() {
         private val mmSocket: BluetoothSocket
         private val mmInStream: InputStream?
@@ -434,7 +433,7 @@ class CommonBluetoothHandler(handler: Handler) {
         }
 
         init {
-            Log.d(TAG, "create ConnectedThread: $socketType")
+            Log.d(TAG, "create ConnectedThread")
             mmSocket = socket
             var tmpIn: InputStream? = null
             var tmpOut: OutputStream? = null

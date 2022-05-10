@@ -10,16 +10,16 @@ import android.widget.Toast
 import com.example.robotcontroller.MainActivity
 import java.util.*
 
-class BluetoothHandlerService(
+class BluetoothCommunicationService(
     private val context: Context,
-    private val mFriHandler: MicroFRIHandler
+    private val mFriMessageComposer: MicroFRIMessageComposer
 ) {
 
     private lateinit var mUUID: UUID
 
     private var mOutStringBuffer: StringBuffer? = null
     private var mBluetoothAdapter: BluetoothAdapter? = null
-    private var mBluetoothHandler: CommonBluetoothHandler? = null
+    private var mBluetoothConnectionHandler: CommonBluetoothConnectionHandler? = null
 
     fun setBluetoothConnection() {
         mUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
@@ -34,8 +34,8 @@ class BluetoothHandlerService(
             return
         }
 
-        if (mBluetoothHandler == null) {
-            mBluetoothHandler = CommonBluetoothHandler(mHandler)
+        if (mBluetoothConnectionHandler == null) {
+            mBluetoothConnectionHandler = CommonBluetoothConnectionHandler(mHandler)
             connectDevice(intent)
         }
     }
@@ -48,57 +48,59 @@ class BluetoothHandlerService(
         }
 
         val device = mBluetoothAdapter!!.getRemoteDevice(address)
-        mBluetoothHandler?.connect(device)
+        mBluetoothConnectionHandler?.connect(device)
     }
 
     fun startBluetooth() {
         // Performing this check in onResume() covers the case in which BT was
         // not enabled during onStart(), so we were paused to enable it...
         // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
-        if (mBluetoothHandler != null) {
+        if (mBluetoothConnectionHandler != null) {
             // Only if the state is STATE_NONE, do we know that we haven't started already
-            if (mBluetoothHandler!!.getState() === CommonBluetoothHandler.STATE_NONE) {
+            if (mBluetoothConnectionHandler!!.getState() === CommonBluetoothConnectionHandler.STATE_NONE) {
                 // Start the Bluetooth chat services
-                mBluetoothHandler!!.start()
+                mBluetoothConnectionHandler!!.start()
             }
         }
     }
 
     fun stopBluetooth() {
-        mBluetoothHandler?.stop()
+        mBluetoothConnectionHandler?.stop()
     }
 
     fun sendFrame(msg: ByteArray) {
-        if (mBluetoothHandler?.getState() !== CommonBluetoothHandler.STATE_CONNECTED) {
+        if (mBluetoothConnectionHandler?.getState() !== CommonBluetoothConnectionHandler.STATE_CONNECTED) {
             Toast.makeText(context, "NOT CONNECTED", Toast.LENGTH_SHORT).show()
             return
         }
 
         if (msg.isNotEmpty()) {
-            mBluetoothHandler?.write(msg)
+            mBluetoothConnectionHandler?.write(msg)
             mOutStringBuffer!!.setLength(0)
         }
     }
+
     private val mHandler: Handler = @SuppressLint("HandlerLeak")
     object : Handler() {
         override fun handleMessage(msg: Message) {
             when (msg.what) {
-                CommonBluetoothHandler.MESSAGE_STATE_CHANGE -> when (msg.arg1) {
-                    CommonBluetoothHandler.STATE_CONNECTED ->
-                        Toast.makeText(context, "CONNECTED", Toast.LENGTH_SHORT).show()
-                    CommonBluetoothHandler.STATE_CONNECTING ->
-                        Toast.makeText(context, "CONNECTING", Toast.LENGTH_SHORT).show()
-                    CommonBluetoothHandler.STATE_LISTEN, CommonBluetoothHandler.STATE_NONE ->
-                        Toast.makeText(context, "LISTEN", Toast.LENGTH_SHORT).show()
-                }
-                CommonBluetoothHandler.MESSAGE_WRITE -> {
+                CommonBluetoothConnectionHandler.MESSAGE_STATE_CHANGE ->
+                    when (msg.arg1) {
+                        CommonBluetoothConnectionHandler.STATE_CONNECTED ->
+                            Toast.makeText(context, "CONNECTED", Toast.LENGTH_SHORT).show()
+                        CommonBluetoothConnectionHandler.STATE_CONNECTING ->
+                            Toast.makeText(context, "CONNECTING", Toast.LENGTH_SHORT).show()
+                        CommonBluetoothConnectionHandler.STATE_LISTEN, CommonBluetoothConnectionHandler.STATE_NONE ->
+                            Toast.makeText(context, "LISTEN", Toast.LENGTH_SHORT).show()
+                    }
+                CommonBluetoothConnectionHandler.MESSAGE_WRITE -> {
                     val writeBuf = msg.obj as ByteArray
                     val writeMessage = String(writeBuf)
                     Toast.makeText(context, writeMessage, Toast.LENGTH_LONG).show()
                 }
-                CommonBluetoothHandler.MESSAGE_READ -> {
+                CommonBluetoothConnectionHandler.MESSAGE_READ -> {
                     val readBuf = msg.obj as ByteArray
-                    val readMessage = mFriHandler.getResponse(readBuf)
+                    val readMessage = mFriMessageComposer.getResponse(readBuf)
                     Toast.makeText(
                         context,
                         readMessage,
@@ -106,8 +108,8 @@ class BluetoothHandlerService(
                     )
                         .show()
                 }
-                CommonBluetoothHandler.MESSAGE_DEVICE_NAME -> {
-                    val mConnectedDeviceName = msg.data.getString(CommonBluetoothHandler.DEVICE_NAME)
+                CommonBluetoothConnectionHandler.MESSAGE_DEVICE_NAME -> {
+                    val mConnectedDeviceName = msg.data.getString(CommonBluetoothConnectionHandler.DEVICE_NAME)
                     Toast.makeText(
                         context,
                         "Connected to $mConnectedDeviceName",
@@ -115,10 +117,10 @@ class BluetoothHandlerService(
                     )
                         .show()
                 }
-                CommonBluetoothHandler.MESSAGE_TOAST ->
+                CommonBluetoothConnectionHandler.MESSAGE_TOAST ->
                     Toast.makeText(
                         context,
-                        msg.data.getString(CommonBluetoothHandler.TOAST),
+                        msg.data.getString(CommonBluetoothConnectionHandler.TOAST),
                         Toast.LENGTH_SHORT
                     )
                         .show()
